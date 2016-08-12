@@ -16,11 +16,13 @@
     }
     .fund {
         background: #EFEFEF;
-    height: 100%;
+   position: absolute;
+    width: 100%;
+    bottom:0;
         .fund-amount {
             border: 1px solid #bfbfbf;
             display: block;
-            margin: 20px auto;
+            margin: 10px auto;
             font-size: 28px;
             border-radius: 3px;
             text-align: center;
@@ -33,7 +35,7 @@
     }
     .currency {
        position: relative;
-    top: 10px;
+    top: 2px;
     left: 34%;
     float: left;
     font-size: 30px;

@@ -14,7 +14,7 @@ export class ProgressChart implements AfterViewInit {
     private animationDelay: number = Math.random() * 1000;
     private twoPi = 2 * Math.PI;
     private formatPercent: Function = d3.format('.0%');
-    private colors = ['#e91e63', '#2196f3', '#ff3d00', '#4caf50'];
+    private colors = ['#e91e63', '#FFAC40', '#ff3d00', '#4caf50'];
 
     constructor(private elementRef: ElementRef) { }
 
@@ -92,16 +92,18 @@ export class ProgressChart implements AfterViewInit {
                         });
                     }, data * this.twoPi);
 
-                textNode.transition()
+               
+            }, this.animationDelay);
+            
+        });
+         textNode.transition()
                     .duration(this.animationDuration)
                     .tween('text', () => {
-                        let interpolate = d3.interpolateRound(0, data * 100);
+                        let interpolate = d3.interpolateRound(0, this.data[0] * 100);
                         return function (t: number) {
                             this.textContent = formatPercent(interpolate(t) / 100);
                         };
                     });
-            }, this.animationDelay);
-        });
     }
 
     get data() {
