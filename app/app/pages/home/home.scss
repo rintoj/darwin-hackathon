@@ -1,2 +1,35 @@
 .home {
+    background: #efefef;
+    ion-header:after {
+        display: none;
+    }
+    progress-chart svg {
+        background: #ffffff;
+    }
+    .fund {
+        margin: 20px;
+        .fund-amount {
+            border: 1px solid #bfbfbf;
+            display: block;
+            margin: 20px auto;
+            font-size: 28px;
+            border-radius: 3px;
+            text-align: center;
+        }
+        button {
+            margin: 10px auto;
+            display: block;
+        }
+    }
+    .currency {
+        position: relative;
+        top: 20px;
+        left: 14%;
+        float: left;
+    }
+    .text {
+        margin: 10px;
+        text-align: center;
+        text-transform: uppercase;
+    }
 }

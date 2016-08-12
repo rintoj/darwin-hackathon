@@ -24,18 +24,20 @@ export class ProgressChart implements AfterViewInit {
 
     protected render() {
 
-        let border = 2;
-        let padding = 6;
-        let radius = 14;
-        let fontSize = 8;
+        let border = 15;
+        let padding = 2;
+        let radius = 100;
+        let fontSize = 45;
         let noText = false;
         let color = '#00357b';
         let boxSize = (radius + padding + border) * 2;
 
         let parent = d3.select(this.elementRef.nativeElement);
         let svg = parent.append('svg')
-            .attr('preserveAspectRatio', 'xMidYMid meet')
-            .attr('viewBox', `0 0 ${boxSize} ${boxSize}`);
+            .attr('width', '100%')
+            .attr('height', '50%')
+            // .attr('preserveAspectRatio', 'xMidYMid meet')
+            // .attr('viewBox', `0 0 ${boxSize} ${boxSize}`);
 
         let arc = d3.svg.arc()
             .innerRadius(radius - border)
