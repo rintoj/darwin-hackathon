@@ -24,18 +24,18 @@ export class ProgressChart implements AfterViewInit {
 
     protected render() {
 
-        let border = 2;
-        let padding = 6;
-        let radius = 14;
-        let fontSize = 8;
+        let border = 15;
+        let padding = 2;
+        let radius = 100;
+        let fontSize = 45;
         let noText = false;
         let color = '#00357b';
         let boxSize = (radius + padding + border) * 2;
 
         let parent = d3.select(this.elementRef.nativeElement);
         let svg = parent.append('svg')
-            .attr('preserveAspectRatio', 'xMidYMid meet')
-            .attr('viewBox', `0 0 ${boxSize} ${boxSize}`);
+            .attr('width', '230')
+            .attr('height', '230');
 
         let arc = d3.svg.arc()
             .innerRadius(radius - border)
@@ -59,7 +59,7 @@ export class ProgressChart implements AfterViewInit {
         // Add the background arc, from 0 to 100% (this.twoPi).
         meter.append('path')
             .datum({ endAngle: this.twoPi })
-            .style('fill', '#f3e5f5')
+            .style('fill', '#fff')
             .style('fill-opacity', 0.5)
             .attr('d', arc);
 

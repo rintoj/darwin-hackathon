@@ -7,29 +7,48 @@ import { NavController } from 'ionic-angular';
 @Component({
   directives: [ProgressChart],
   template: `
-    <ion-content padding class="home">
-      <h2>Welcome to Ionic!</h2>
-      <p>
-        This starter project comes with simple tabs-based layout for apps
-        that are going to primarily use a Tabbed UI.
-      </p>
-      <p>
-        Take a look at the <code>app/</code> directory to add or change tabs,
-        update any existing page or create new pages.
-      </p>
+  
+    <ion-header>
+      <ion-navbar>
+        <button menuToggle>
+          <ion-icon name='menu'></ion-icon>
+        </button>
+        <ion-title>
+          <ion-icon name='home'></ion-icon>
+          Lisa
+        </ion-title>
+      </ion-navbar>
+    </ion-header>
 
-      <progress-chart></progress-chart>
+    <ion-content padding class="home">
+      <progress-chart>
+        <h2>Dream Home</h2>
+      </progress-chart>
+      <div class="banner">Add Fund</div>
+      <div class="fund">
+        <div class="text">How much would you like to add?</div>
+        <div class="currency">$</div>
+        <input type="text" class="fund-amount" [(ngModel)]="amount">
+        <div padding>
+          <ion-segment [(ngModel)]="pet">
+            <ion-segment-button value="10" (click)="amount=10">
+              $10
+            </ion-segment-button>
+            <ion-segment-button value="20" (click)="amount=20">
+              $20
+            </ion-segment-button>
+            <ion-segment-button value="50" (click)="amount=50">
+              $50
+            </ion-segment-button>
+          </ion-segment>
+        </div>
+        <button>  <ion-icon name="add"></ion-icon>Add Fund </button>
+      </div>
     </ion-content>
   `
 })
 export class HomePage {
 
-  protected todos: Todo[] = [];
+  protected amount: number = 5;
 
-  constructor(
-    private navCtrl: NavController,
-    private todoService: TodoService
-  ) {
-    // this.todoService.fetch().subscribe((data: any) => this.todos = data);
-  }
 }
