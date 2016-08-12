@@ -1,12 +1,12 @@
 .home {
-    background: #efefef;
+    background: #FFF;
     ion-header:after {
         display: none;
     }
     progress-chart {
         display: block;
         margin: 0px;
-        background: rgb(33, 150, 243);
+       
         padding: 4px;
         svg {
             margin: 0 auto;
@@ -15,7 +15,8 @@
         }
     }
     .fund {
-        margin: 20px;
+        background: #EFEFEF;
+    height: 100%;
         .fund-amount {
             border: 1px solid #bfbfbf;
             display: block;
@@ -23,6 +24,7 @@
             font-size: 28px;
             border-radius: 3px;
             text-align: center;
+            width:40%;
         }
         button {
             margin: 10px auto;
@@ -30,14 +32,27 @@
         }
     }
     .currency {
-        position: relative;
-        top: 20px;
-        left: 14%;
-        float: left;
+       position: relative;
+    top: 10px;
+    left: 34%;
+    float: left;
+    font-size: 30px;
+    color: #666;
     }
     .text {
         margin: 10px;
         text-align: center;
         text-transform: uppercase;
+        padding: 20px;
     }
-}
+
+   
+} 
+
+ .logo{
+        display: block;
+        width: 60%;
+        max-width: 300px;
+        margin: 0 auto;
+    transform: translateX(-17px);
+    }

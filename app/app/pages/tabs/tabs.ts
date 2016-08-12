@@ -6,9 +6,8 @@ import {ContactPage} from '../contact/contact';
 @Component({
   template: `
     <ion-tabs>
-      <ion-tab [root]="homePage" tabTitle="Home" tabIcon="home"></ion-tab>
-      <ion-tab [root]="aboutPage" tabTitle="About" tabIcon="information-circle"></ion-tab>
-      <ion-tab [root]="contactPage" tabTitle="Contact" tabIcon="contacts"></ion-tab>
+      <ion-tab [root]="homePage" tabTitle="Overview" tabIcon="home"></ion-tab>
+      <ion-tab [root]="aboutPage" tabTitle="Customize" tabIcon="information-circle"></ion-tab>      
     </ion-tabs>
   `
 })

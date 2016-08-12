@@ -59,7 +59,7 @@ export class ProgressChart implements AfterViewInit {
         // Add the background arc, from 0 to 100% (this.twoPi).
         meter.append('path')
             .datum({ endAngle: this.twoPi })
-            .style('fill', '#fff')
+            .style('fill', '#CCC')
             .style('fill-opacity', 0.5)
             .attr('d', arc);
 
