@@ -14,7 +14,7 @@ export class ProgressChart implements AfterViewInit {
     private animationDelay: number = Math.random() * 1000;
     private twoPi = 2 * Math.PI;
     private formatPercent: Function = d3.format('.0%');
-    private colors = ['#e91e63', '#2196f3', '#ff3d00', '#4caf50'];
+    private colors = ['#e91e63', '#FFAC40', '#ff3d00', '#4caf50'];
 
     constructor(private elementRef: ElementRef) { }
 
