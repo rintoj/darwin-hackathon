@@ -24,6 +24,7 @@ import { NavController } from 'ionic-angular';
       <progress-chart>
         <h2>Dream Home</h2>
       </progress-chart>
+      <div class="banner">Add Fund</div>
       <div class="fund">
         <div class="text">How much would you like to add?</div>
         <div class="currency">$</div>
