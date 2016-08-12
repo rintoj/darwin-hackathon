@@ -7,4 +7,19 @@
 </ion-header>
 
 <ion-content padding class="about">
+  <line-chart data="{{data}}"></line-chart>
+
+  <ion-item class="item-borderless">
+    Choose the period
+  </ion-item>
+  <ion-item class="item-borderless">
+    <ion-range [(ngModel)]="period">
+    </ion-range>
+  </ion-item>
+
+  <ion-item>
+    <ion-range [(ngModel)]="amount">
+
+    </ion-range>
+  </ion-item>
 </ion-content>
