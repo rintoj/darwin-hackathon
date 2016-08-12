@@ -1,0 +1,12 @@
+{
+     "ios": {
+         "debug": {
+             "codeSignIdentity": "iPad Pro Dev Profile",
+             "provisioningProfile": "fb3ebe60-a660-4ea6-9e91-f6cfba940659"
+         },  
+         "release": {
+             "codeSignIdentity": "iPad Pro Dev Profile",
+             "provisioningProfile": "fb3ebe60-a660-4ea6-9e91-f6cfba940659"
+         }   
+     }   
+ }

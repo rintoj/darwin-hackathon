@@ -1,0 +1,12 @@
+{
+     "ios": {
+         "debug": {
+             "codeSignIdentity": "TCS dreamUP",
+             "provisioningProfile": "50081e63-b5cc-46a0-9d81-1f4713d348fd"
+         },
+         "release": {
+             "codeSignIdentity": "TCS dreamUP",
+             "provisioningProfile": "50081e63-b5cc-46a0-9d81-1f4713d348fd"
+         }
+     }
+ }
