@@ -31,7 +31,7 @@ export class LineChart implements AfterViewInit {
         var title = 'Science vs Style - Daily Leanpub Book Sales';
 
         var margin = { top: 20, right: 20, bottom: 50, left: 50 },
-            width = 340 - margin.left - margin.right,
+            width = 380 - margin.left - margin.right,
             height = 200 - margin.top - margin.bottom;
 
         var parsedtg = d3.time.format('%Y-%m-%d').parse;
