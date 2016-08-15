@@ -11,7 +11,7 @@ import {LineChart} from '../../components/line-chart';
           <ion-icon name='menu'></ion-icon>
         </button>
         <ion-title>       
-        <img class="logo" src="img/logo.png"/> 
+        <img class="logo" src="images/logo.png"/> 
         </ion-title>
       </ion-navbar>
     </ion-header>

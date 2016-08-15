@@ -42,15 +42,15 @@ gulp.task('watch', ['clean'], function (done) {
     function () {
       gulpWatch('app/**/*.scss', function () { gulp.start('sass'); });
       gulpWatch('app/**/*.html', function () { gulp.start('html'); });
-      gulpWatch('app/**/*.png', function () { gulp.start('images'); });
+      gulpWatch('resources/images/*.png', function () { gulp.start('images'); });
       buildBrowserify({ watch: true }).on('end', done);
     }
   );
 });
 
 gulp.task('images', function () {
-  gulp.src('app/**/**/*.png')
-    .pipe(gulp.dest('www/build'))
+  gulp.src('resources/images/*.png')
+    .pipe(gulp.dest('www/build/images'))
 });
 
 gulp.task('build', ['clean'], function (done) {
