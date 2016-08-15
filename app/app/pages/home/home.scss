@@ -8,6 +8,13 @@
         margin: 0px;
         margin-top: 70px;
         padding: 4px;
+        position: relative;
+        height: 50%;
+        width: 100%;
+        display: block;
+        .leaflet-control {
+            display: none;
+        }
         svg {
             margin: 0 auto;
             display: block;
@@ -16,9 +23,9 @@
     }
     .fund {
         background: #EFEFEF;
-   position: absolute;
-    width: 100%;
-    bottom:0;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
         .fund-amount {
             border: 1px solid #bfbfbf;
             display: block;
@@ -26,7 +33,7 @@
             font-size: 28px;
             border-radius: 3px;
             text-align: center;
-            width:40%;
+            width: 40%;
         }
         button {
             margin: 10px auto;
@@ -34,12 +41,12 @@
         }
     }
     .currency {
-       position: relative;
-    top: 2px;
-    left: 34%;
-    float: left;
-    font-size: 30px;
-    color: #666;
+        position: relative;
+        top: 2px;
+        left: 34%;
+        float: left;
+        font-size: 30px;
+        color: #666;
     }
     .text {
         margin: 10px;
@@ -47,14 +54,12 @@
         text-transform: uppercase;
         padding: 20px;
     }
+}
 
-   
-} 
-
- .logo{
-        display: block;
-        width: 60%;
-        max-width: 300px;
-        margin: 0 auto;
+.logo {
+    display: block;
+    width: 60%;
+    max-width: 300px;
+    margin: 0 auto;
     transform: translateX(-17px);
-    }
+}

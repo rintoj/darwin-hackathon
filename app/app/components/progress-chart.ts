@@ -1,6 +1,8 @@
 import * as d3 from 'd3';
 import { Component, ElementRef, AfterViewInit } from '@angular/core';
 
+declare let L: any;
+
 @Component({
     selector: 'progress-chart',
     template: ``
@@ -19,7 +21,11 @@ export class ProgressChart implements AfterViewInit {
     constructor(private elementRef: ElementRef) { }
 
     ngAfterViewInit() {
-        this.render();
+        // this.render();
+        L.map(this.elementRef.nativeElement, {
+            center: [51.505, -0.09],
+            zoom: 13
+        });
     }
 
     protected render() {
@@ -92,18 +98,18 @@ export class ProgressChart implements AfterViewInit {
                         });
                     }, data * this.twoPi);
 
-               
+
             }, this.animationDelay);
-            
+
         });
-         textNode.transition()
-                    .duration(this.animationDuration)
-                    .tween('text', () => {
-                        let interpolate = d3.interpolateRound(0, this.data[0] * 100);
-                        return function (t: number) {
-                            this.textContent = formatPercent(interpolate(t) / 100);
-                        };
-                    });
+        textNode.transition()
+            .duration(this.animationDuration)
+            .tween('text', () => {
+                let interpolate = d3.interpolateRound(0, this.data[0] * 100);
+                return function (t: number) {
+                    this.textContent = formatPercent(interpolate(t) / 100);
+                };
+            });
     }
 
     get data() {

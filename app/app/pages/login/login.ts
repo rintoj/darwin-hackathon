@@ -3,6 +3,7 @@ import { TabsPage } from '../tabs/tabs';
 import { Component } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { NavController } from 'ionic-angular';
+// import {Toast} from 'ionic-native';
 
 @Component({
     template: `
@@ -39,6 +40,7 @@ export class LoginPage {
             if (user.status === 'false') {
                 this.loginError = true;
             } else {
+                // Toast.show('Login successful', 'short', 'bottom').subscribe();
                 this.navCtrl.push(TabsPage);
             }
         });
