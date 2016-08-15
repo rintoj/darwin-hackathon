@@ -22,13 +22,12 @@ ion-header:after {
 }
 
 .toolbar-background {
-    background:#FFF;
+    background: #FFF;
 }
 
 .toolbar-title,
 .bar-button {
     color: #CCC;
-    
 }
 
 .banner {
@@ -43,3 +42,7 @@ ion-header:after {
     text-transform: uppercase;
 }
 
+.chart {
+    position: relative;
+    display: block;
+}

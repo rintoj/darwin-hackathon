@@ -2,12 +2,12 @@ import {Component} from '@angular/core';
 import {HomePage} from '../home/home';
 import {CalculatePage} from '../calculate/calculate';
 import {ContactPage} from '../contact/contact';
-import {MenuController} from 'ionic-angular';
- 
+import {MenuController, NavController} from 'ionic-angular';
+
 @Component({
   template: `
     <ion-header>
-      <ion-navbar>
+      <ion-navbar hideBackButton>
         <ion-title>
           <img class="logo" src="images/logo.png"/> 
           <ion-icon name="settings" class="settings" (click)="toggleMenu()"></ion-icon>
@@ -19,6 +19,8 @@ import {MenuController} from 'ionic-angular';
       <ion-content>
         <ion-list>
             <ion-icon name="close" menuClose ion-item detail-none></ion-icon>
+            <ion-item-divider></ion-item-divider>
+            <button clear (click)="logout()"><ion-icon name="key"></ion-icon> Logout</button>
         </ion-list>
       </ion-content>
     </ion-menu>
@@ -36,9 +38,10 @@ export class TabsPage {
   private contactPage: any;
   private loginPage: any;
 
-  constructor(public menuCtrl: MenuController) {
-    // this tells the tabs component which Pages
-    // should be each tab's root Page
+  constructor(
+    private menuCtrl: MenuController,
+    private navController: NavController
+  ) {
     this.homePage = HomePage;
     this.calculatePage = CalculatePage;
     this.contactPage = ContactPage;
@@ -46,5 +49,9 @@ export class TabsPage {
 
   toggleMenu() {
     this.menuCtrl.toggle();
+  }
+
+  logout() {
+    this.navController.popToRoot();
   }
 }

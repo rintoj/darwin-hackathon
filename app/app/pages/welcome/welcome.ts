@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, Slides } from 'ionic-angular';
-import { LoginComponent } from '../login/login';
+import { LoginPage } from '../login/login';
 import { TodoService } from '../../services/todo.service';
 
 @Component({
@@ -23,9 +23,9 @@ export class WelcomeComponent {
     @ViewChild('welcomeSlider') slider: Slides;
 
     constructor(todoService: TodoService, private navController: NavController) {
-        todoService.bancsApi().subscribe((data: any) => {
-            console.log(data);
-        });
+        // todoService.bancsApi().subscribe((data: any) => {
+        //     console.log(data);
+        // });
     }
 
     next() {
@@ -33,6 +33,6 @@ export class WelcomeComponent {
     }
 
     login() {
-        this.navController.push(LoginComponent);
+        this.navController.push(LoginPage);
     }
 }

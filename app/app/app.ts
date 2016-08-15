@@ -7,6 +7,7 @@ import { HTTP_PROVIDERS } from '@angular/http';
 import { Platform, ionicBootstrap } from 'ionic-angular';
 
 import 'rxjs/add/operator/map';
+import 'chart.js';
 
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>'

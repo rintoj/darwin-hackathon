@@ -22,7 +22,7 @@ import { NavController } from 'ionic-angular';
         </ion-content>
     `
 })
-export class LoginComponent {
+export class LoginPage {
 
     private userId: string = 'john.doe';
     private password: string = 's3cret';
