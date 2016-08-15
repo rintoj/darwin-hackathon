@@ -2,14 +2,14 @@ import { WelcomeComponent } from './pages/welcome/welcome';
 import { Component } from '@angular/core';
 import { StatusBar } from 'ionic-native';
 import { TodoService } from './services/todo.service';
+import { LoginService } from './services/login.service';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { Platform, ionicBootstrap } from 'ionic-angular';
 
 import 'rxjs/add/operator/map';
 
 @Component({
-  template: '<ion-nav [root]="rootPage"></ion-nav>',
-  providers: [HTTP_PROVIDERS, TodoService]
+  template: '<ion-nav [root]="rootPage"></ion-nav>'
 })
 export class MyApp {
 
@@ -24,4 +24,7 @@ export class MyApp {
   }
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(MyApp,
+  [
+    HTTP_PROVIDERS, TodoService, LoginService
+  ]);

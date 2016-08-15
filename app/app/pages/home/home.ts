@@ -28,7 +28,7 @@ import { NavController } from 'ionic-angular';
             </ion-segment-button>
           </ion-segment>
         </div>
-        <button (click)="logout()">  <ion-icon name="add"></ion-icon>Add Fund </button>
+        <button>  <ion-icon name="add"></ion-icon>Add Fund </button>
       </div>
     </ion-content>
   `
@@ -38,9 +38,5 @@ export class HomePage {
   protected amount: number = 5;
 
   constructor(public navCtrl: NavController) { }
-
-  logout() {
-    this.navCtrl.pop();
-  }
 
 }

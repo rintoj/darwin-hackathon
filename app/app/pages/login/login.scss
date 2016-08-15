@@ -2,6 +2,7 @@
     .title {
         margin: 12vh auto;
         text-align: center;
+        height: 15vh;
     }
     h1 {
         font-size: 3em;
@@ -9,6 +10,18 @@
     .note {
         color: lightgray;
         font-size: 2em;
+        margin-bottom: 10px;
+    }
+    .error {
+        color: red;
+        font-size: 1.2em;
+        opacity: 0;
+        margin-top: 20px;
+        transition: opacity .2s ease-in, margin .2s ease-in;
+        &.show {
+            opacity: 1;
+            margin-top: 0px
+        }
     }
     input {
         border: none;

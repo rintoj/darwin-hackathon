@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { User } from '../../models/user';
 import { TabsPage } from '../tabs/tabs';
+import { Component } from '@angular/core';
+import { LoginService } from '../../services/login.service';
+import { NavController } from 'ionic-angular';
 
 @Component({
     template: `
@@ -8,6 +10,7 @@ import { TabsPage } from '../tabs/tabs';
             <div class="title">
                 <h1>Sign In</h1>
                 <div class="note">Good to see you again</div>
+                <div class="error" [class.show]="loginError">It seems you got it wrong.</div>
             </div>
 
             <div class="form">
@@ -21,13 +24,24 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class LoginComponent {
 
-    private userId: string = 'jardson.araujo@gmail.com';
-    private password: string = 'password';
+    private userId: string = 'john.doe';
+    private password: string = 's3cret';
+    private loginError: boolean = false;
 
-    constructor(public navCtrl: NavController) { }
+    constructor(
+        private navCtrl: NavController,
+        private loginService: LoginService
+    ) { }
 
     login() {
-        this.navCtrl.push(TabsPage);
+        this.loginError = false;
+        this.loginService.login(this.userId, this.password).subscribe((user: User) => {
+            if (user.status === 'false') {
+                this.loginError = true;
+            } else {
+                this.navCtrl.push(TabsPage);
+            }
+        });
     }
 
 }

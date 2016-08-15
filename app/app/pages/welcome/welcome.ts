@@ -5,10 +5,9 @@ import { TodoService } from '../../services/todo.service';
 
 @Component({
     template: `
-        <ion-content class="tutorial-page">
+        <ion-content padding class="tutorial-page">
             <ion-slides #welcomeSlider pager>
                 <ion-slide>
-                    <ion-toolbar></ion-toolbar>
                     <img src="images/logo.png" class="slide-image"/>
                     <button large clear (click)="login()">
                         Continue
