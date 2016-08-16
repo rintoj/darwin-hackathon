@@ -1,6 +1,5 @@
 import { Todo } from '../../models/todo';
 import { Component } from '@angular/core';
-import { TodoService } from '../../services/todo.service';
 import { ProgressChart } from '../../components/progress-chart';
 import { NavController } from 'ionic-angular';
 

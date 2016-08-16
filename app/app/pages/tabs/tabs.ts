@@ -2,6 +2,10 @@ import {Component} from '@angular/core';
 import {HomePage} from '../home/home';
 import {CalculatePage} from '../calculate/calculate';
 import {ContactPage} from '../contact/contact';
+import {BudgetPage} from '../budget/budget';
+import {GoalsPage} from '../goals/goals';
+import {PotPage} from '../pot/pot';
+import {MorePage} from '../more/more';
 import {MenuController, NavController} from 'ionic-angular';
 
 @Component({
@@ -26,8 +30,11 @@ import {MenuController, NavController} from 'ionic-angular';
     </ion-menu>
 
     <ion-tabs #mainContent>
-      <ion-tab [root]="homePage" tabTitle="Overview" tabIcon="home"></ion-tab>
-      <ion-tab [root]="calculatePage" tabTitle="Calculate" tabIcon="information-circle"></ion-tab>      
+      <ion-tab [root]="goalsPage" tabTitle="Goals" tabIcon="i-goals"></ion-tab>
+      <ion-tab [root]="potPage" tabTitle="Pot" tabIcon="i-piggybank"></ion-tab>      
+      <ion-tab [root]="budgetPage" tabTitle="Home" tabIcon="i-home"></ion-tab>      
+      <ion-tab [root]="calculatePage" tabTitle="Profile" tabIcon="i-profile"></ion-tab>      
+      <ion-tab [root]="morePage" tabTitle="More" tabIcon="i-more"></ion-tab>      
     </ion-tabs>
   `
 })
@@ -36,7 +43,11 @@ export class TabsPage {
   private homePage: any;
   private calculatePage: any;
   private contactPage: any;
+  private budgetPage: any;
+  private goalsPage: any;
+  private potPage: any;
   private loginPage: any;
+  private morePage: any;
 
   constructor(
     private menuCtrl: MenuController,
@@ -45,6 +56,10 @@ export class TabsPage {
     this.homePage = HomePage;
     this.calculatePage = CalculatePage;
     this.contactPage = ContactPage;
+    this.budgetPage = BudgetPage;
+    this.goalsPage = GoalsPage;
+    this.potPage = PotPage;
+    this.morePage = MorePage;
   }
 
   toggleMenu() {

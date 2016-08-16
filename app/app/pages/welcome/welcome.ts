@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, Slides } from 'ionic-angular';
 import { LoginPage } from '../login/login';
-import { TodoService } from '../../services/todo.service';
-import { facebook } from '../../utils/facebook';
+import { TabsPage } from '../tabs/tabs';
+
+declare let facebook: any;
 
 @Component({
     template: `
@@ -27,10 +28,8 @@ export class WelcomeComponent {
 
     @ViewChild('welcomeSlider') slider: Slides;
 
-    constructor(todoService: TodoService, private navController: NavController) {
-        // todoService.bancsApi().subscribe((data: any) => {
-        //     console.log(data);
-        // });
+    constructor(private navController: NavController) {
+        
     }
 
     next() {
@@ -42,6 +41,13 @@ export class WelcomeComponent {
     }
 
     loginWithFacebook() {
-        facebook.login((a: any) => console.log(a), { } );
+        facebook.init({ appId: '694735337223373' });
+        facebook.login((response: any) => {
+            console.debug('facebook response', response);
+            if (response.status === 'connected') {
+                window.localStorage.setItem('fbAccessToken', response.authResponse.accessToken);
+                this.navController.push(TabsPage);
+            }
+        }, { scope: 'email,read_stream,publish_actions,user_relationships,user_relationship_details,user_posts' });
     }
 }
