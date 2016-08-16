@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { StatusBar } from 'ionic-native';
 import { BancsService } from './services/bancs.service';
 import { LoginService } from './services/login.service';
+import { GoalService } from './services/goal.service';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { Platform, ionicBootstrap } from 'ionic-angular';
 
@@ -26,5 +27,5 @@ export class MyApp {
 
 ionicBootstrap(MyApp,
   [
-    HTTP_PROVIDERS, BancsService, LoginService
+    HTTP_PROVIDERS, BancsService, LoginService, GoalService
   ]);

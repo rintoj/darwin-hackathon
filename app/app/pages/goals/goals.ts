@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {LifeAfter60Page} from '../lifeAfter60/lifeAfter60';
+import { Goal } from '../../models/goal';
+import { GoalService } from '../../services/goal.service';
+import { LifeAfter60Page } from '../lifeAfter60/lifeAfter60';
+import { formatAmount } from '../../utils/formatter';
 
 @Component({
   template: `
     <ion-content padding class="goals">
         <div class="header-space"></div> 
         <div padding>
-          <ion-segment [(ngModel)]="pet">
+          <ion-segment>
             <ion-segment-button value="All">
               All
             </ion-segment-button>
@@ -20,22 +23,11 @@ import {LifeAfter60Page} from '../lifeAfter60/lifeAfter60';
           </ion-segment>
         </div>
         <div>
-          <div class="card">
-            <div class="title">Trip to Barcelona</div>
-            <div class="content">£ 350 by 17th Sep</div>
-          </div>
-           <div class="card">
-            <div class="title">Rainy day fund</div>
-            <div class="content">£ 210 by 14th Dec</div>
-          </div>
-           <div class="card"  (click)="loadDreamHome()">
-            <div class="title">Dream Home</div>
-            <div class="content">£ 350K by 2035</div>
-          </div>
-          <div class="card">
-            <div class="title">Life after 60</div>
-            <div class="content">£ 150K by 2045</div>
-          </div>
+          <div *ngFor="let goal of goals" [attr.class]="goal.type + ' card'">
+            <div class="title">{{goal.name}}</div>
+            <div class="content"><strong>£ {{formatAmount(goal.amount)}}</strong> by {{goal.targetDate}}</div>
+            <ion-icon name="ios-arrow-forward"></ion-icon>
+          </div>         
         </div>
         <button large clear><ion-icon name="add"></ion-icon> Add New Goal</button>
     </ion-content>
@@ -43,12 +35,22 @@ import {LifeAfter60Page} from '../lifeAfter60/lifeAfter60';
 })
 export class GoalsPage {
 
-  constructor(private navController: NavController) {
+  private goals: Goal[] = [];
 
+  constructor(
+    private navController: NavController,
+    private goalService: GoalService
+  ) { }
+
+  ngAfterViewInit() {
+    this.goalService.fetch().subscribe((goals: Goal[]) => this.goals = goals);
+  }
+
+  formatAmount(amount: number): string {
+    return formatAmount(amount);
   }
 
   loadDreamHome() {
-    console.log('here');
     this.navController.push(LifeAfter60Page);
   }
 }

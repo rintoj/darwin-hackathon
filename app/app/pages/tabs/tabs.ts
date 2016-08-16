@@ -30,11 +30,11 @@ import {MenuController, NavController} from 'ionic-angular';
     </ion-menu>
 
     <ion-tabs #mainContent>
-      <ion-tab [root]="goalsPage" tabTitle="Goals" tabIcon="i-goals"></ion-tab>
-      <ion-tab [root]="potPage" tabTitle="Pot" tabIcon="i-piggybank"></ion-tab>      
-      <ion-tab [root]="budgetPage" tabTitle="Home" tabIcon="i-home"></ion-tab>      
-      <ion-tab [root]="calculatePage" tabTitle="Profile" tabIcon="i-profile"></ion-tab>      
-      <ion-tab [root]="morePage" tabTitle="More" tabIcon="i-more"></ion-tab>      
+      <ion-tab swipeBackEnabled [root]="goalsPage" tabTitle="Goals" tabIcon="i-goals"></ion-tab>
+      <ion-tab swipeBackEnabled [root]="potPage" tabTitle="Pot" tabIcon="i-piggybank"></ion-tab>      
+      <ion-tab swipeBackEnabled [root]="budgetPage" tabTitle="Home" tabIcon="i-home"></ion-tab>      
+      <ion-tab swipeBackEnabled [root]="calculatePage" tabTitle="Profile" tabIcon="i-profile"></ion-tab>      
+      <ion-tab swipeBackEnabled [root]="morePage" tabTitle="More" tabIcon="i-more"></ion-tab>      
     </ion-tabs>
   `
 })
