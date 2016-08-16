@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, Slides } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { TodoService } from '../../services/todo.service';
+import { facebook } from '../../utils/facebook';
 
 @Component({
     template: `
@@ -10,7 +11,11 @@ import { TodoService } from '../../services/todo.service';
                 <ion-slide>
                     <img src="images/logo.png" class="slide-image"/>
                     <button large clear (click)="login()">
-                        Continue
+                        Login
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </button>
+                    <button large clear (click)="loginWithFacebook()" style="color: #0062ff">
+                        Login with facebook
                         <ion-icon name="arrow-forward"></ion-icon>
                     </button>
                 </ion-slide>
@@ -34,5 +39,9 @@ export class WelcomeComponent {
 
     login() {
         this.navController.push(LoginPage);
+    }
+
+    loginWithFacebook() {
+        facebook.login((a: any) => console.log(a), { } );
     }
 }
