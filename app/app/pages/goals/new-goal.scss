@@ -1,0 +1,53 @@
+.new-goals {
+    color: #888888;
+    .card {
+        padding: 23px 17px;
+        margin: 11px;
+        color: #dedede;
+        border-radius: 13px;
+        overflow: hidden;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        position: relative;
+        box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.25);
+        & .title {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        &.travel {
+            background: url('../../images/goal-travel.png');
+        }
+        &.home {
+            background: url('../../images/goal-home.png');
+        }
+        &.life-after-60 {
+            background: url('../../images/goal-la60.png');
+        }
+        &.rainy-day-fund {
+            background: url('../../images/goal-rainy.png');
+        }
+        &.car {
+            background: url('../../images/goal-car.png');
+        }
+        ion-icon {
+            position: absolute;
+            right: 20px;
+            top: calc(50% - 10px);
+            background: rgba(255, 255, 255, 0.62);
+            width: 24px;
+            border-radius: 57px;
+            height: 24px;
+            text-align: center;
+            line-height: 23px;
+            color: black;
+        }
+    }
+    h3 {
+        color: gray;
+        padding: 24px 0px 10px;
+        margin: 0px;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 20px;
+    }
+}

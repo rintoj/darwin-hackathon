@@ -2,8 +2,17 @@ import { Component } from '@angular/core';
 
 @Component({
     template: `
+        <ion-header>
+            <ion-navbar>
+                <ion-title>       
+                <img class="logo" src="images/logo.png"/> 
+                </ion-title>
+                <button right menuToggle>
+                <ion-icon name='more'></ion-icon>
+                </button>
+            </ion-navbar>
+        </ion-header>
         <ion-content padding class="more">
-            <div class="header-space"></div>
             <div class="title">
             <div class="note">Please come back later</div>
             </div>

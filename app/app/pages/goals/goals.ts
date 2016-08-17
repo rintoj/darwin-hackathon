@@ -4,11 +4,22 @@ import { Goal } from '../../models/goal';
 import { GoalService } from '../../services/goal.service';
 import { LifeAfter60Page } from '../lifeAfter60/lifeAfter60';
 import { formatAmount } from '../../utils/formatter';
+import { NewGoalPage } from './new-goal';
 
 @Component({
   template: `
+    <ion-header>
+      <ion-navbar>
+        <ion-title>       
+        <img class="logo" src="images/logo.png"/> 
+        </ion-title>
+        <button right menuToggle>
+          <ion-icon name='more'></ion-icon>
+        </button>
+      </ion-navbar>
+    </ion-header>
+    
     <ion-content padding class="goals">
-        <div class="header-space"></div> 
         <div padding>
           <ion-segment>
             <ion-segment-button value="All">
@@ -29,7 +40,7 @@ import { formatAmount } from '../../utils/formatter';
             <ion-icon name="ios-arrow-forward"></ion-icon>
           </div>         
         </div>
-        <button large clear><ion-icon name="add"></ion-icon> Add New Goal</button>
+        <button large clear (click)="addGoal()"><ion-icon name="add"></ion-icon> Add New Goal</button>
     </ion-content>
   `
 })
@@ -52,5 +63,9 @@ export class GoalsPage {
 
   loadDreamHome() {
     this.navController.push(LifeAfter60Page);
+  }
+
+  addGoal() {
+    this.navController.push(NewGoalPage);
   }
 }

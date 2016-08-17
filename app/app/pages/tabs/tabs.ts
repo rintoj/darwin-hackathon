@@ -10,14 +10,7 @@ import {MenuController, NavController} from 'ionic-angular';
 
 @Component({
   template: `
-    <ion-header>
-      <ion-navbar hideBackButton>
-        <ion-title>
-          <img class="logo" src="images/logo.png"/> 
-          <ion-icon name="settings" class="settings" (click)="toggleMenu()"></ion-icon>
-        </ion-title>
-      </ion-navbar>
-    </ion-header>
+   
 
     <ion-menu side="right" [content]="mainContent">
       <ion-content>

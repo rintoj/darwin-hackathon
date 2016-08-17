@@ -5,7 +5,7 @@ import {LineChart} from '../../components/line-chart';
 
 @Component({
   template: `
-      <ion-header>
+    <ion-header>
       <ion-navbar>
         <button menuToggle>
           <ion-icon name='menu'></ion-icon>

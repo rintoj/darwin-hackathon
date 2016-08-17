@@ -13,6 +13,7 @@
 @import "../pages/tabs/tabs";
 @import "../pages/budget/budget";
 @import "../pages/goals/goals";
+@import "../pages/goals/new-goal";
 @import "../pages/pot/pot";
 @import "../pages/lifeAfter60/lifeAfter60";
 @import "../pages/more/more";
@@ -26,11 +27,9 @@ ion-page {
 // ion-header:after {
 //     opacity: 0.2;
 // }
-
 // .toolbar-background {
 //     background: #FFF;
 // }
-
 .toolbar-title,
 .bar-button {
     color: #CCC;
@@ -56,4 +55,13 @@ ion-page {
 .header-space {
     display: block;
     height: 60px;
+}
+
+.logo {
+    display: block;
+    height: 37px;
+    margin: 0px 11px;
+    -webkit-transform: translateX(-17px);
+    transform: translateX(-17px);
+    padding-top: 6px;
 }

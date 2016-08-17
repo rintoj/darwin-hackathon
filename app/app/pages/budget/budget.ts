@@ -2,8 +2,17 @@ import { Component } from '@angular/core';
 
 @Component({
     template: `
+        <ion-header>
+            <ion-navbar>
+                <ion-title>       
+                <img class="logo" src="images/logo.png"/> 
+                </ion-title>
+                <button right menuToggle>
+                <ion-icon name='more'></ion-icon>
+                </button>
+            </ion-navbar>
+        </ion-header>
         <ion-content padding class="budget">
-            <div class="header-space"></div>
             <div class="header-text">
                 Your last 3 months of spending allocation is represented below. How would you like to optimize your spending?
             </div>

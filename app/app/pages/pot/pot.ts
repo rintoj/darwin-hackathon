@@ -3,8 +3,17 @@ import { BancsService } from '../../services/bancs.service';
 
 @Component({
   template: `
+    <ion-header>
+        <ion-navbar>
+            <ion-title>       
+            <img class="logo" src="images/logo.png"/> 
+            </ion-title>
+            <button right menuToggle>
+            <ion-icon name='more'></ion-icon>
+            </button>
+        </ion-navbar>
+    </ion-header>
     <ion-content padding class="pot">
-        <div class="header-space"></div>
         <div class="header-text">
           £ 4,617
           <div class="divider"></div>

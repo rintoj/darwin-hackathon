@@ -1,4 +1,5 @@
 import { WelcomeComponent } from './pages/welcome/welcome';
+import { TabsPage } from './pages/tabs/tabs';
 import { Component } from '@angular/core';
 import { StatusBar } from 'ionic-native';
 import { BancsService } from './services/bancs.service';
@@ -18,6 +19,7 @@ export class MyApp {
 
   constructor(private platform: Platform) {
     this.rootPage = WelcomeComponent;
+    // this.rootPage = TabsPage;
 
     platform.ready().then(() => {
       StatusBar.styleDefault();
