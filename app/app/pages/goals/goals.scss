@@ -17,7 +17,14 @@
         ion-icon {
             position: absolute;
             right: 20px;
-            top: calc(50% - 5px);
+            top: calc(50% - 10px);
+            background: rgba(255, 255, 255, 0.62);
+            width: 24px;
+            border-radius: 57px;
+            height: 24px;
+            text-align: center;
+            line-height: 23px;
+            color: black;
         }
     }
     button {

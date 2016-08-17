@@ -1,18 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Goal } from '../models/goal';
-import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/Rx';
 import { Http, Response } from '@angular/http';
 
 @Injectable()
 export class GoalService {
 
-    constructor(private http: Http) { }
+    private baseUrl: string = 'http://192.168.1.100:8080/davm/davmController';
+    public goals: BehaviorSubject<Goal[]> = new BehaviorSubject<Goal[]>(undefined);
+    public goalTypes: BehaviorSubject<Goal[]> = new BehaviorSubject<Goal[]>(undefined);
+    public lastKnownFilter: string = 'all';
 
-    public fetch(): Observable<Goal[]> {
-        // TODO: Change this to back-end service
-        return Observable.create((observer: Observer<Goal[]>) => {
-            observer.next([{
+    constructor(private http: Http) {
+        this.fillWithDummyData();
+    }
+
+    public fillWithDummyData() {
+        this.goals.next([
+            {
                 id: '213974',
                 type: 'travel',
                 name: 'Trip to Barcelona',
@@ -20,54 +27,66 @@ export class GoalService {
                 amount: 350,
                 priority: 1
             }, {
-                    id: '123233',
-                    type: 'rainy-day-fund',
-                    name: 'Rainy day fund',
-                    targetDate: '14th Dec 2016',
-                    amount: 210,
-                    priority: 1
-                }, {
-                    id: '213974',
-                    type: 'home',
-                    name: 'Dream Home',
-                    targetDate: '2035',
-                    amount: 350000,
-                    priority: 1
-                }, {
-                    id: '213974',
-                    type: 'life-after-60',
-                    name: 'Life after 60',
-                    targetDate: '2045',
-                    amount: 150000,
-                    priority: 1
-                }]);
-        });
+                id: '123233',
+                type: 'rainy-day-fund',
+                name: 'Rainy day fund',
+                targetDate: '14th Dec 2016',
+                amount: 210,
+                priority: 1
+            }, {
+                id: '213974',
+                type: 'home',
+                name: 'Dream Home',
+                targetDate: '2035',
+                amount: 350000,
+                priority: 1
+            }, {
+                id: '213974',
+                type: 'life-after-60',
+                name: 'Life after 60',
+                targetDate: '2045',
+                amount: 150000,
+                priority: 1
+            }
+        ]);
 
-        // return this.http.get('http://192.168.1.100:8080/davm/davmController/getCustomerGoal?custId=238501400A')
-        //     .map((response: Response) => response.json());
+        this.goalTypes.next([
+            {
+                id: '213974',
+                type: 'travel',
+                name: 'Trip to Barcelona'
+            }, {
+                id: '123233',
+                type: 'rainy-day-fund',
+                name: 'Rainy day fund'
+            }, {
+                id: '213974',
+                type: 'home',
+                name: 'Dream Home'
+            }, {
+                id: '213974',
+                type: 'life-after-60',
+                name: 'Life after 60'
+            }
+        ]);
     }
 
-    public fetchGoalTypes(): Observable<Goal[]> {
-        return Observable.create((observer: Observer<Goal[]>) => {
-            observer.next([
-                {
-                    id: '213974',
-                    type: 'travel',
-                    name: 'Travel',
-                }, {
-                    id: '123233',
-                    type: 'car',
-                    name: 'Save for new car',
-                }, {
-                    id: '213974',
-                    type: 'home',
-                    name: 'Dream Home',
-                }, {
-                    id: '213974',
-                    type: 'life-after-60',
-                    name: 'Life after 60',
-                }
-            ]);
-        });
+    public fetch(filter: string): void {
+        this.lastKnownFilter = filter;
+        this.http.get(`${this.baseUrl}/getCustomerGoal?custId=238501400A&filter=${filter}`)
+            .map((response: Response) => response.json())
+            .subscribe((goals: any) => this.goals.next(goals));
+    }
+
+    public fetchGoalTypes(): void {
+        this.http.get(`${this.baseUrl}/getGoalMaster`)
+            .map((response: Response) => response.json())
+            .subscribe((goals: any) => this.goalTypes.next(goals));
+    }
+
+    public saveGoal(goal: any): Observable<any> {
+        let observable = this.http.post(`${this.baseUrl}/addCustomerGoals`, goal);
+        observable.subscribe(() => this.fetch(this.lastKnownFilter));
+        return observable;
     }
 }

@@ -40,7 +40,8 @@ export class NewGoalPage {
   ) { }
 
   ngAfterViewInit() {
-    this.goalService.fetchGoalTypes().subscribe((goals: Goal[]) => this.goals = goals);
+    this.goalService.goalTypes.subscribe((goals: Goal[]) => this.goals = goals);
+    this.goalService.fetchGoalTypes();
   }
 
   get filteredGoals() {

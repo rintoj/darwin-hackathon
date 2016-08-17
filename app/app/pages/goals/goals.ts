@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Goal } from '../../models/goal';
+import { GoalPage } from './goal';
 import { GoalService } from '../../services/goal.service';
-import { LifeAfter60Page } from '../lifeAfter60/lifeAfter60';
 import { formatAmount } from '../../utils/formatter';
 import { NewGoalPage } from './new-goal';
 
@@ -22,19 +22,19 @@ import { NewGoalPage } from './new-goal';
     <ion-content padding class="goals">
         <div padding>
           <ion-segment>
-            <ion-segment-button value="All">
+            <ion-segment-button value="All" (click)="changeFilter('all')">
               All
             </ion-segment-button>
-            <ion-segment-button value="Missions">
+            <ion-segment-button value="Missions" (click)="changeFilter('missions')">
               Missions
             </ion-segment-button>
-            <ion-segment-button value="Milestones">
+            <ion-segment-button value="Milestones" (click)="changeFilter('milestones')">
               Milestones
             </ion-segment-button>
           </ion-segment>
         </div>
         <div>
-          <div *ngFor="let goal of goals" [attr.class]="goal.type + ' card'">
+          <div *ngFor="let goal of goals" [attr.class]="goal.type + ' card'" (click)="loadGoal(goal)">
             <div class="title">{{goal.name}}</div>
             <div class="content"><strong>£ {{formatAmount(goal.amount)}}</strong> by {{goal.targetDate}}</div>
             <ion-icon name="ios-arrow-forward"></ion-icon>
@@ -47,6 +47,7 @@ import { NewGoalPage } from './new-goal';
 export class GoalsPage {
 
   private goals: Goal[] = [];
+  private filter: string = 'all';
 
   constructor(
     private navController: NavController,
@@ -54,18 +55,24 @@ export class GoalsPage {
   ) { }
 
   ngAfterViewInit() {
-    this.goalService.fetch().subscribe((goals: Goal[]) => this.goals = goals);
+    this.goalService.goals.subscribe((goals: Goal[]) => this.goals = goals);
+    this.goalService.fetch(this.filter);
   }
 
   formatAmount(amount: number): string {
     return formatAmount(amount);
   }
 
-  loadDreamHome() {
-    this.navController.push(LifeAfter60Page);
+  loadGoal(goal: Goal) {
+    this.navController.push(GoalPage);
   }
 
   addGoal() {
     this.navController.push(NewGoalPage);
+  }
+
+  changeFilter(filter: string) {
+    this.filter = filter;
+    this.goalService.fetch(this.filter); 
   }
 }

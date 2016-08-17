@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavParams } from 'ionic-angular';
+import {Goal} from '../../models/goal';
 
 @Component({
   template: `
@@ -10,7 +12,7 @@ import { Component } from '@angular/core';
         </ion-title>
       </ion-navbar>
     </ion-header>
-    <ion-content padding class="lifeAfter60">
+    <ion-content padding class="goal">
         <div class="header-text">
           <ion-icon name="home"></ion-icon>
           <div class="subheader">Dream Home</div>
@@ -29,6 +31,12 @@ import { Component } from '@angular/core';
     </ion-content>
   `
 })
-export class LifeAfter60Page {
+export class GoalPage {
+
+  private goal: Goal;
+
+  constructor(private params: NavParams) {
+    this.goal = params.get('goal');
+  }
 
 }

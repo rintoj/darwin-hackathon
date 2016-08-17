@@ -2,15 +2,17 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Goal } from '../../models/goal';
 import { GoalService } from '../../services/goal.service';
+import { formatAmount } from '../../utils/formatter';
 
 @Component({
   template: `
   
-    <ion-header>
+    <ion-header class="add-goal">
       <ion-navbar>
         <ion-title>       
-        <img class="logo" src="images/logo.png"/> 
+          <img class="logo" src="images/logo.png"/> 
         </ion-title>
+        <button clear right class="save-btn" (click)="saveGoal()">Save</button>
       </ion-navbar>
     </ion-header>
     <ion-content padding class="add-goal">
@@ -19,14 +21,14 @@ import { GoalService } from '../../services/goal.service';
         </div>
         <div padding>
           <div class="range-item">
-            <div class="title">Choose the period</div>
-            <div class="value">{{period}} days</div>
-            <ion-range [(ngModel)]="period" min="1" max="90"></ion-range>
+            <div class="title">Goal Amount</div>
+            <div class="value">£ {{formatAmount(amount)}}</div>
+            <ion-range [(ngModel)]="amount" min="10" max="5000"></ion-range>
           </div>
-          <div class="range-item">
-            <div class="title">Choose the amount</div>
-            <div class="value">£ {{amount}}</div>
-            <ion-range [(ngModel)]="amount" min="10" max="500"></ion-range>
+           <div class="range-item">
+            <div class="title">In what time</div>
+            <div class="value">{{formatPeriod(period)}}</div>
+            <ion-range [(ngModel)]="period" min="1" max="1080"></ion-range>
           </div>
           <div class="range-item">
             <div class="title">HOW DO YOU WANT TO FUND THIS GOAL</div>
@@ -79,6 +81,26 @@ export class AddGoalPage {
     private goalService: GoalService
   ) {
     this.goal = this.params.get('goal');
+  }
+
+  formatAmount(amount: number): string {
+    return formatAmount(amount);
+  }
+
+  formatPeriod(period: number): string {
+    if (period > 12) return Math.ceil(period / 12.0) + ' years';
+    return `${period} months`;
+  }
+
+  saveGoal() {
+    this.goalService.saveGoal({
+      amount: this.amount,
+      custGoalName: this.goal.name,
+      custId: '238501400A',
+      priority: 1,
+      targetDate: this.period,
+      goalTypeId: this.goal.id
+    }).subscribe(() => this.navController.pop());
   }
 
 }
