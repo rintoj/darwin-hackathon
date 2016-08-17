@@ -1,3 +1,90 @@
 .budget {
-    
+    .card {
+        padding: 10px 17px;
+        margin: 10px;
+        color: #777676;
+        background: #f3f3f3;
+        .title {
+            padding: 7px 0px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .action-bar {
+            border-top: 1px solid #e4e4e4;
+            margin-top: 13px;
+        }
+        .amount-input {
+            padding-left: 83px;
+            color: #ff0030;
+            input {
+                width: calc(100% - 20px);
+                font-size: 1.2em;
+                font-weight: bold;
+            }
+        }
+        .card-body {
+            display: inline-block;
+            width: calc(100% - 38px);
+        }
+        .icon {
+            font-size: 24px;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: top;
+        }
+        .note {
+            padding-top: 10px;
+            font-size: 0.8em;
+            ion-icon {
+                padding-right: 10px;
+            }
+        }
+        button {
+            background: transparent;
+            box-shadow: none;
+            color: #ff0030;
+            padding: 0;
+            margin-right: 20px;
+            &.button-clear {
+                color: #777676;
+            }
+        }
+        &.half-card {
+            width: 158px;
+            display: inline-block;
+            margin: 4px 10px;
+            background: #f8f8f8;
+            height: 90px;
+            vertical-align: top;
+            background: #2e81e8;
+            color: white;
+            .amount {
+                font-size: 2em;
+                padding: 15px 5px;
+            }
+            span.decimal {
+                font-size: 0.5em;
+                vertical-align: top;
+                padding-top: 5px;
+                display: inline-block;
+            }
+        }
+        .text {
+            font-weight: bold;
+        }
+        .row {
+            padding-top: 10px;
+        }
+        .col.col-left {
+            width: 70%;
+        }
+        .col.col-right {
+            width: 30%;
+            text-align: right;
+        }
+        .col {
+            display: inline-block;
+            padding: 5px;
+        }
+    }
 }

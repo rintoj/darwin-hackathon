@@ -1,12 +1,9 @@
-import { Todo } from '../../models/todo';
 import { Component } from '@angular/core';
-import { ProgressChart } from '../../components/progress-chart';
 import { NavController } from 'ionic-angular';
 
 @Component({
-  directives: [ProgressChart],
   template: `
-    <ion-content padding class="home">
+    <ion-content padding class="zoopla">
       <progress-chart>
         <h2>Dream Home</h2>
       </progress-chart>
@@ -32,9 +29,7 @@ import { NavController } from 'ionic-angular';
     </ion-content>
   `
 })
-export class HomePage {
-
-  protected amount: number = 5;
+export class ZooplaPage {
 
   constructor(public navCtrl: NavController) { }
 

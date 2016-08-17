@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FacebookService } from '../../services/facebook.service';
 
 @Component({
     template: `
@@ -41,8 +42,9 @@ import { Component } from '@angular/core';
                 <ion-list-header>
                     Social
                 </ion-list-header>
-                <ion-item>
+                <ion-item (click)="loginToFacebook()">
                     Facebook
+                    <ion-badge item-right secondary *ngIf="isConnectedToFacebook()">connected</ion-badge>
                     <ion-icon name="ios-arrow-forward" item-right></ion-icon>
                 </ion-item>
                 <ion-item>
@@ -58,5 +60,23 @@ import { Component } from '@angular/core';
     `
 })
 export class MorePage {
+
+    constructor(private facebookService: FacebookService) { }
+
+    ngAfterViewInit() {
+        setTimeout(() => {
+            this.facebookService.fetchFacebookFeed((messages: string[]) => {
+                this.facebookService.pushMessages(messages);
+            });
+        }, 1000);
+    }
+
+    loginToFacebook() {
+        return this.facebookService.loginToFacebook();
+    }
+
+    isConnectedToFacebook() {
+        return this.facebookService.isConnectedToFacebook();
+    }
 
 }

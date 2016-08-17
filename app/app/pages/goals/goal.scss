@@ -48,6 +48,16 @@
                 font-weight: bold;
             }
         }
+        button {
+            background: transparent;
+            box-shadow: none;
+            color: #ff0030;
+            padding: 0;
+            margin-right: 20px;
+            &.button-clear {
+                color: #777676;
+            }
+        }
     }
     .topup-content {
         padding-top: 16px;

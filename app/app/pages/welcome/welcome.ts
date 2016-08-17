@@ -3,8 +3,6 @@ import { NavController, Slides } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { TabsPage } from '../tabs/tabs';
 
-declare let facebook: any;
-
 @Component({
     template: `
         <ion-content padding class="tutorial-page">
@@ -36,14 +34,4 @@ export class WelcomeComponent {
         this.navController.push(LoginPage);
     }
 
-    loginWithFacebook() {
-        facebook.init({ appId: '694735337223373' });
-        facebook.login((response: any) => {
-            console.debug('facebook response', response);
-            if (response.status === 'connected') {
-                window.localStorage.setItem('fbAccessToken', response.authResponse.accessToken);
-                this.navController.push(TabsPage);
-            }
-        }, { scope: 'email,read_stream,publish_actions,user_relationships,user_relationship_details,user_posts' });
-    }
 }
