@@ -1,7 +1,7 @@
 .goal {
     color: gray;
     ion-icon.ion-md-home {
-        font-size: 2em;
+        font-size: 0em;
     }
     .header-text {
         font-size: 2.4em;
@@ -95,6 +95,7 @@
     .target-amount {
         font-size: medium;
         font-weight: normal;
+            padding-bottom: 6px;
     }
     .title {
         padding: 12px;

@@ -15,6 +15,7 @@ import { CustomerService } from '../../services/customer.service';
     </ion-header>
     <ion-content padding class="profile">
         <div class="header-text">
+          <img src="images/daria.png">
           {{profile?.PARTYNAME?.FIRSTNM}} {{profile?.PARTYNAME?.LASTNM}}
           <div class="divider"></div>
           <div class="subheader">{{profile?.GENERAL?.AGE}} {{profile?.GENERAL?.GENDER}}</div>

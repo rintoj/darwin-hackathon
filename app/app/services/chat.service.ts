@@ -12,7 +12,7 @@ export class ChatService {
     public chats: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(undefined);
     private chatArray: any[] = [
         {
-            text: 'Hi, I have £10,000, where shall I invest?',
+            text: 'Hi Daria, I have £10,000, where shall I invest?',
             me: true,
             time: '1 mins ago'
         }, {
@@ -25,26 +25,29 @@ export class ChatService {
     constructor(private http: Http) {
         this.chats.next(this.chatArray);
     }
-    
+
     public post(message: string): void {
         this.chatArray.push({
             text: message,
             me: true,
             time: 'now'
         });
-        this.chats.next(this.chatArray); 
+        this.chats.next(this.chatArray);
         this.http.get(`${this.baseUrl}/getHelpChat?postMessage=${message}`)
             .map((response: Response) => response.json())
             .share()
             .subscribe((data: any) => {
-                data.helpContent.map((content) => {
-                    this.chatArray.push({
-                        text: content.header,
-                        me: false,
-                        time: 'now'
+                setTimeout(() => {
+                    ((data && data.helpContent) || []).map((content) => {
+                        this.chatArray.push({
+                            text: content.header,
+                            me: false,
+                            time: 'now'
+                        });
                     });
-                });
-                this.chats.next(this.chatArray); 
+                    this.chats.next(this.chatArray);
+                }, 1500);
             });
+
     }
 }

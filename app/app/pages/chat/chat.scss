@@ -19,10 +19,10 @@
     }
     .bubble {
         padding: 10px;
-        background: #e8e8e8;
+        background: #e04444;
         margin: 10px;
         width: 60%;
-        color: gray;
+        color: white;
         border-radius: 10px;
         position: relative;
         clear: both;
@@ -31,8 +31,7 @@
         }
         &[me="true"] {
             float: right;
-            background: #9e9c9c;
-            color: white;
+            background: #827f7f;
             .me {
                 display: inline-block;
             }

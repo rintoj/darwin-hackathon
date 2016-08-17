@@ -18,13 +18,15 @@ import { PieChart } from '../../components/pie-chart';
         </ion-header>
         <ion-content padding class="budget">
             <nudge *ngFor="let nudge of nudges" [nudge]="nudge"></nudge>
-            <div class="card half-card">
-                <div class="text">Balance today</div>
-                <div class="amount">£ 3,450<span class="decimal">.00</span></div>
-            </div>
-            <div class="card half-card">
-                <div class="text">Saved so far</div>
-                <div class="amount">£ 256<span class="decimal">.23</span></div>
+            <div class="card">
+                <div class="half-card">
+                    <div class="text">Balance today</div>
+                    <div class="amount">£ 3,450<span class="decimal">.00</span></div>
+                </div>
+                <div class="half-card">
+                    <div class="text">Saved so far</div>
+                    <div class="amount">£ 256<span class="decimal">.23</span></div>
+                </div>
             </div>
             <div class="card">
                 <div class="text">Savings this week</div>

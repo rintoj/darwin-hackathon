@@ -31,7 +31,7 @@ import { ChatService } from '../../services/chat.service';
 })
 export class ChatPage {
 
-    protected inputText: string;
+    protected inputText: string = 'where can i find the info for the bond?';
     protected chats: any[] = [];
 
     constructor(
@@ -46,6 +46,9 @@ export class ChatPage {
     postMessage() {
         if (this.inputText === undefined || this.inputText.trim() === '') return;
         this.chatService.post(this.inputText.trim());
+        setTimeout(() => {
+            this.inputText = '';
+        }, 10);
     }
 
 }

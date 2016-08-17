@@ -3,7 +3,8 @@
         padding: 10px 17px;
         margin: 10px;
         color: #777676;
-        background: #f3f3f3;
+        background: #f8f8f8;
+        border: 1px solid #d2d1d1;
         .title {
             padding: 7px 0px;
             font-weight: bold;
@@ -49,16 +50,16 @@
                 color: #777676;
             }
         }
-        &.half-card {
-            width: 158px;
+        .half-card {
+            width: calc(50% - 22px);
             display: inline-block;
             margin: 4px 10px;
             background: #f8f8f8;
-            height: 90px;
+            height: 70px;
             vertical-align: top;
-            background: #2e81e8;
-            color: white;
+            text-align: center;
             .amount {
+                color: #ee3224;
                 font-size: 2em;
                 padding: 15px 5px;
             }
@@ -68,6 +69,9 @@
                 padding-top: 5px;
                 display: inline-block;
             }
+        }
+        .half-card:last-child {
+            border-left: 1px solid #d2d1d1;
         }
         .text {
             font-weight: bold;
