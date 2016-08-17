@@ -1,36 +1,52 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { ZooplaService } from '../../services/zoopla.service';
 
 @Component({
-  template: `
-    <ion-content padding class="zoopla">
-      <progress-chart>
-        <h2>Dream Home</h2>
-      </progress-chart>
-      <div class="fund"> 
-        <div class="text">Fund your LISA account</div>
-        <div class="currency">£</div>
-        <input type="text" class="fund-amount" [(ngModel)]="amount">
-        <div padding>
-          <ion-segment [(ngModel)]="pet">
-            <ion-segment-button value="10" (click)="amount=10">
-              £ 10
-            </ion-segment-button>
-            <ion-segment-button value="20" (click)="amount=20">
-              £ 20
-            </ion-segment-button>
-            <ion-segment-button value="50" (click)="amount=50">
-              £ 50
-            </ion-segment-button>
-          </ion-segment>
-        </div>
-        <button>  <ion-icon name="add"></ion-icon>Add Fund </button>
-      </div>
-    </ion-content>
-  `
+    template: `
+        <ion-header>
+            <ion-navbar>
+                <ion-title>       
+                    <img class="logo" src="images/logo.png"/> 
+                </ion-title>
+                <button right menuToggle>
+                    <ion-icon name='more'></ion-icon>
+                </button>
+            </ion-navbar>
+        </ion-header>
+        <ion-content padding class="zoopla">
+            <div class="header">Zoopla</div>
+            <ion-list>
+                <ion-list-header>
+                    Homes
+                </ion-list-header>
+                <ion-item *ngFor="let home of homes" (click)="openHomeUrl(home)">
+                    <ion-avatar item-left>
+                        <img [src]="home.thumbnailUrl">
+                    </ion-avatar>
+                    <div class="price">£ {{home.price}}</div>
+                    <div class="address">{{home.displayableAddress}}</div>
+                    <div class="bedrooms">{{home.numBedrooms}} Bedrooms</div> 
+                    <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    `
 })
 export class ZooplaPage {
 
-  constructor(public navCtrl: NavController) { }
+    private homes: any[];
+
+    constructor(private zooplaService: ZooplaService) { }
+
+    ngAfterViewInit() {
+        this.zooplaService.homes.subscribe((homes: any[]) => {
+            this.homes = homes;
+        });
+        this.zooplaService.fetch();
+    }
+
+    openHomeUrl(home) {
+        window.open(home.detailsUrl);
+    }
 
 }

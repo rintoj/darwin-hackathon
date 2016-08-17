@@ -6,19 +6,17 @@ import { BehaviorSubject } from 'rxjs/Rx';
 import { Http, Response } from '@angular/http';
 
 @Injectable()
-export class ZooplaService {
+export class CustomerService {
 
     private baseUrl: string = 'http://192.168.1.100:8080/davm/davmController';
-    public homes: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(undefined);
+    public profile: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(undefined);
 
-    constructor(private http: Http) {
-        // this.fillWithDummyData();
-    }
-    
+    constructor(private http: Http) { }
+
     public fetch(): void {
-        this.http.get(`${this.baseUrl}/findHomes?areaCode=South%20East%20England`)
+        this.http.get(`${this.baseUrl}/getCustomerInfo?customerNumber=238501400A`)
             .map((response: Response) => response.json())
             .share()
-            .subscribe((data: any) => this.homes.next(data.listing));
+            .subscribe((data: any) => this.profile.next(data));
     }
 }

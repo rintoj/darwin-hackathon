@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import {HomePage} from '../home/home';
-import {CalculatePage} from '../calculate/calculate';
+import {ProfilePage} from '../profile/profile';
 import {ContactPage} from '../contact/contact';
 import {BudgetPage} from '../budget/budget';
 import {GoalsPage} from '../goals/goals';
@@ -26,7 +25,7 @@ import {MenuController, NavController} from 'ionic-angular';
       <ion-tab swipeBackEnabled [root]="budgetPage" tabTitle="Home" tabIcon="i-home"></ion-tab>      
       <ion-tab swipeBackEnabled [root]="goalsPage" tabTitle="Goals" tabIcon="i-goals"></ion-tab>
       <ion-tab swipeBackEnabled [root]="potPage" tabTitle="Pot" tabIcon="i-piggybank"></ion-tab>      
-      <ion-tab swipeBackEnabled [root]="calculatePage" tabTitle="Profile" tabIcon="i-profile"></ion-tab>      
+      <ion-tab swipeBackEnabled [root]="profilePage" tabTitle="Profile" tabIcon="i-profile"></ion-tab>      
       <ion-tab swipeBackEnabled [root]="morePage" tabTitle="More" tabIcon="i-more"></ion-tab>      
     </ion-tabs>
   `
@@ -34,7 +33,7 @@ import {MenuController, NavController} from 'ionic-angular';
 export class TabsPage {
 
   private homePage: any;
-  private calculatePage: any;
+  private profilePage: any;
   private contactPage: any;
   private budgetPage: any;
   private goalsPage: any;
@@ -46,8 +45,7 @@ export class TabsPage {
     private menuCtrl: MenuController,
     private navController: NavController
   ) {
-    this.homePage = HomePage;
-    this.calculatePage = CalculatePage;
+    this.profilePage = ProfilePage;
     this.contactPage = ContactPage;
     this.budgetPage = BudgetPage;
     this.goalsPage = GoalsPage;

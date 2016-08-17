@@ -1,0 +1,38 @@
+.profile {
+    color: gray;
+    .header-text {
+        font-size: 2.4em;
+        font-weight: bold;
+        color: white;
+        background: url('../../images/money.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 50px 0px;
+        height: 30%;
+        text-align: center;
+    }
+    .subheader {
+        font-size: 16px;
+        font-weight: normal;
+    }
+    button {
+        margin: 40px auto;
+        display: block;
+    }
+    .title {
+        font-weight: bold;
+        padding: 10px 0px;
+        color: dimgrey;
+    }
+    .description {
+        color: gray;
+    }
+    .amount {
+        top: 24px;
+        position: absolute;
+        right: 16px;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #00bb9c;
+    }
+}

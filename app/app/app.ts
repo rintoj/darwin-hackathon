@@ -6,6 +6,8 @@ import { BancsService } from './services/bancs.service';
 import { LoginService } from './services/login.service';
 import { GoalService } from './services/goal.service';
 import { FacebookService } from './services/facebook.service';
+import { ZooplaService } from './services/zoopla.service';
+import { CustomerService } from './services/customer.service';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { Platform, ionicBootstrap } from 'ionic-angular';
 
@@ -30,5 +32,11 @@ export class MyApp {
 
 ionicBootstrap(MyApp,
   [
-    HTTP_PROVIDERS, BancsService, LoginService, GoalService, FacebookService
+    HTTP_PROVIDERS,
+    BancsService,
+    LoginService,
+    GoalService,
+    FacebookService,
+    ZooplaService,
+    CustomerService
   ]);
