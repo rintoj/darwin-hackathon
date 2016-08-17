@@ -1,7 +1,7 @@
 .more {
     .header {
         color: gray;
-        padding: 24px 0px 10px;
+        padding: 24px 0px 0px;
         margin: 0px;
         text-align: center;
         text-transform: uppercase;
@@ -13,5 +13,8 @@
     .badge-secondary {
         color: #818181;
         background-color: #dedcdc;
+    }
+    ion-list-header {
+        margin-top: 20px;
     }
 }

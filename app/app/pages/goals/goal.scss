@@ -70,7 +70,7 @@
             padding: 10px 0px;
         }
         .amount-input {
-            padding-left: 83px;
+            padding-left: 90px;
             color: #ff0030;
             input {
                 width: calc(100% - 20px);
@@ -95,6 +95,9 @@
     .target-amount {
         font-size: medium;
         font-weight: normal;
+    }
+    .title {
+        padding: 12px;
     }
 }
 

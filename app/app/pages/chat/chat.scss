@@ -1,0 +1,64 @@
+.chat {
+    .header {
+        color: gray;
+        padding: 24px 0px 10px;
+        margin: 0px;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 20px;
+    }
+    ion-list-header {
+        color: gray;
+    }
+    .badge-secondary {
+        color: #818181;
+        background-color: #dedcdc;
+    }
+    .chats {
+        position: relative;
+    }
+    .bubble {
+        padding: 10px;
+        background: #e8e8e8;
+        margin: 10px;
+        width: 60%;
+        color: gray;
+        border-radius: 10px;
+        position: relative;
+        clear: both;
+        .me {
+            display: none;
+        }
+        &[me="true"] {
+            float: right;
+            background: #9e9c9c;
+            color: white;
+            .me {
+                display: inline-block;
+            }
+        }
+        .time {
+            font-size: 10px;
+            padding-top: 3px;
+            float: right;
+        }
+    }
+    .chat-input {
+        position: absolute;
+        bottom: 0;
+        background: #e8e8e8;
+        width: 100%;
+        padding: 5px;
+        input {
+            width: 77%;
+            border: 0px;
+            border-radius: 3px;
+            padding: 10px;
+            vertical-align: middle;
+        }
+        .button-clear {
+            vertical-align: middle;
+            text-align: right;
+        }
+    }
+}

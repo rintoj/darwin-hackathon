@@ -23,7 +23,8 @@ import { NavParams, NavController } from 'ionic-angular';
         <div [attr.class]="goal?.type + ' header-text'">
           <ion-icon name="home"></ion-icon>
           <div class="subheader">{{goal?.name}}</div>
-          <div class="amount">£ {{formatAmount(goal?.savedAmount)}} <span class="target-amount">of £ {{formatAmount(goal?.amount)}}</span> </div>
+          <div class="amount">£ {{formatAmount(goal?.savedAmount)}}</div>
+          <div class="target-amount">Monthly target: £ {{formatAmount(goal?.amount)}}</div>
           <div class="note">by {{goal?.targetDate}} | Last payment: 20 days ago</div>          
         </div>
 
@@ -41,7 +42,7 @@ import { NavParams, NavController } from 'ionic-angular';
             <button clear>Ignore</button>
           </div>
         </div>      
-        
+        <div class="title" *ngIf="goal.type === 'home'">RELATED PRODUCTS</div>
         <div class="card products" *ngIf="goal.type === 'home'">
           <div class="product" *ngFor="let product of products">
             <div class="title">{{product.name}}</div>

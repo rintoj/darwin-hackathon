@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { ChatPage } from '../chat/chat';
 import { FacebookService } from '../../services/facebook.service';
 
 @Component({
@@ -55,13 +57,24 @@ import { FacebookService } from '../../services/facebook.service';
                     Instagram
                     <ion-icon name="ios-arrow-forward" item-right></ion-icon>
                 </ion-item>
+
+                <ion-list-header>
+                    Help
+                </ion-list-header>
+                <ion-item (click)="openChat()">
+                    Chat with us
+                    <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+                </ion-item>
             </ion-list>
         </ion-content>
     `
 })
 export class MorePage {
 
-    constructor(private facebookService: FacebookService) { }
+    constructor(
+        private navController: NavController,
+        private facebookService: FacebookService
+    ) { }
 
     ngAfterViewInit() {
         setTimeout(() => {
@@ -77,6 +90,10 @@ export class MorePage {
 
     isConnectedToFacebook() {
         return this.facebookService.isConnectedToFacebook();
+    }
+
+    openChat() {
+        this.navController.push(ChatPage);
     }
 
 }
