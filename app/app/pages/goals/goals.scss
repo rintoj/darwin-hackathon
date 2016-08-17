@@ -14,18 +14,6 @@
             font-weight: bold;
             font-size: 1.2em;
         }
-        &.travel {
-            background: url('../../images/goal-travel.png');
-        }
-        &.home {
-            background: url('../../images/goal-home.png');
-        }
-        &.life-after-60 {
-            background: url('../../images/goal-la60.png');
-        }
-        &.rainy-day-fund {
-            background: url('../../images/goal-rainy.png');
-        }
         ion-icon {
             position: absolute;
             right: 20px;
@@ -35,5 +23,23 @@
     button {
         margin: 40px auto;
         display: block;
+    }
+}
+
+.card {
+    &.travel {
+        background: url('../../images/goal-travel.png');
+    }
+    &.home {
+        background: url('../../images/goal-home.png');
+    }
+    &.life-after-60 {
+        background: url('../../images/goal-la60.png');
+    }
+    &.rainy-day-fund {
+        background: url('../../images/goal-rainy.png');
+    }
+    &.car {
+        background: url('../../images/goal-car.png');
     }
 }
