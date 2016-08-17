@@ -100,7 +100,10 @@ export class AddGoalPage {
       priority: 1,
       targetDate: this.period,
       goalTypeId: this.goal.id
-    }).subscribe(() => this.navController.pop());
+    }).subscribe(() => {
+      // go two pages back
+      this.navController.pop().then(() => this.navController.pop());
+    });
   }
 
 }

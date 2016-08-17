@@ -75,17 +75,19 @@ export class GoalService {
         this.lastKnownFilter = filter;
         this.http.get(`${this.baseUrl}/getCustomerGoal?custId=238501400A&filter=${filter}`)
             .map((response: Response) => response.json())
+            .share()
             .subscribe((goals: any) => this.goals.next(goals));
     }
 
     public fetchGoalTypes(): void {
         this.http.get(`${this.baseUrl}/getGoalMaster`)
             .map((response: Response) => response.json())
+            .share()
             .subscribe((goals: any) => this.goalTypes.next(goals));
     }
 
     public saveGoal(goal: any): Observable<any> {
-        let observable = this.http.post(`${this.baseUrl}/addCustomerGoals`, goal);
+        let observable = this.http.post(`${this.baseUrl}/addCustomerGoals`, goal).share();
         observable.subscribe(() => this.fetch(this.lastKnownFilter));
         return observable;
     }
