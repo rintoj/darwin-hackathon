@@ -22,7 +22,7 @@ import {MenuController, NavController} from 'ionic-angular';
       </ion-content>
     </ion-menu>
 
-    <ion-tabs #mainContent>
+    <ion-tabs #mainContent selectedIndex="2">
       <ion-tab swipeBackEnabled [root]="goalsPage" tabTitle="Goals" tabIcon="i-goals"></ion-tab>
       <ion-tab swipeBackEnabled [root]="potPage" tabTitle="Pot" tabIcon="i-piggybank"></ion-tab>      
       <ion-tab swipeBackEnabled [root]="budgetPage" tabTitle="Home" tabIcon="i-home"></ion-tab>      

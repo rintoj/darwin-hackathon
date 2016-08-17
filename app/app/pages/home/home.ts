@@ -10,7 +10,7 @@ import { NavController } from 'ionic-angular';
       <progress-chart>
         <h2>Dream Home</h2>
       </progress-chart>
-      <div class="fund">
+      <div class="fund"> 
         <div class="text">Fund your LISA account</div>
         <div class="currency">£</div>
         <input type="text" class="fund-amount" [(ngModel)]="amount">
