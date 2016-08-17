@@ -1,63 +1,76 @@
+import * as d3 from 'd3';
 import { Component, ElementRef } from '@angular/core';
-import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 
 @Component({
     selector: 'pie-chart',
     template: `
-        <base-chart class="chart"
-           [datasets]="chartData"
-           [labels]="chartLabels"
-           [options]="chartOptions"
-           [legend]="chartLegend"
-           [chartType]="chartType"></base-chart>
     `
 })
 export class PieChart {
 
-    private data = {
-        labels: [
-            "Red",
-            "Blue",
-            "Yellow"
-        ],
-        datasets: [
-            {
-                data: [300, 50, 100],
-                backgroundColor: [
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56"
-                ],
-                hoverBackgroundColor: [
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56"
-                ]
-            }]
-    };
+    constructor(private elementRef: ElementRef) { }
 
-    public chartData: any[] = [
-        {
-            data: [300, 50, 100],
-            backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ]
+    ngAfterViewInit() {
+        this.render();
+    }
+
+    render() {
+        var width = 300,
+            height = 300,
+            radius = Math.min(width, height) / 2;
+
+        var color = d3.scale.ordinal()
+            .range(['#FF6384',
+                    '#36A2EB',
+                    '#FFCE56']);
+
+        var arc: any = d3.svg.arc()
+            .outerRadius(radius - 10)
+            .innerRadius(0);
+
+        var labelArc = d3.svg.arc()
+            .outerRadius(radius - 40)
+            .innerRadius(radius - 40);
+
+        var pie = d3.layout.pie()
+            .sort(null)
+            .value(function (d: any) { return d.population; });
+
+        var svg = d3.select(this.elementRef.nativeElement).append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .append('g')
+            .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+
+
+        var g = svg.selectAll('.arc')
+            .data(pie(this.data))
+            .enter().append('g')
+            .attr('class', 'arc');
+
+        g.append('path')
+            .attr('d', arc)
+            .style('fill', function (d: any): any { return color(d.data.age); });
+
+        g.append('text')
+            .attr('transform', function (d: any) { return 'translate(' + labelArc.centroid(d) + ')'; })
+            .attr('dy', '.35em')
+            .text(function (d: any) { return d.data.age; });
+
+
+        function type(d) {
+            d.population = +d.population;
+            return d;
         }
-    ];
+    }
 
-    public chartOptions: any = {
-        scaleShowVerticalLines: false,
-        responsive: true
-    };
-    public chartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-    public chartType: string = 'pie';
-    public chartLegend: boolean = false;
-
-    // public chartData: any[] = [
-    //     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    //     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
-    // ];
-
+    get data(): any {
+        return [
+            { age: 'Savings', population: 2704659 },
+            { age: 'Housing', population: 4499890 },
+            { age: 'Lifestyle', population: 2159981 },
+            { age: 'Transportation', population: 3853788 },
+            { age: 'Others', population: 14106543 }
+        ];
+    }
 }

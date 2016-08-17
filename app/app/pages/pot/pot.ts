@@ -35,17 +35,17 @@ import { BancsService } from '../../services/bancs.service';
         <ion-list>
           <ion-item>
             <div class="title">Barcelona Trip Account</div>
-            <div class="description">Halifax Savings Account XX2332</div>
+            <div class="description">Pru Cash ISA Account XX2332</div>
             <div class="amount">£ 310</div>
           </ion-item>
            <ion-item>
             <div class="title">Oyster Card Account</div>
-            <div class="description">Halifax Savings Account XX6572</div>
+            <div class="description">Pru Cash ISA Account XX6572</div>
             <div class="amount">£ 180</div>
           </ion-item>
-           <ion-item>
+          <ion-item>
             <div class="title">Emergency Fund</div>
-            <div class="description">HSBC Current Account XX3454</div>
+            <div class="description">Pru Cash ISA Account XX3454</div>
             <div class="amount">£ 850</div>
           </ion-item>
            <ion-item>

@@ -34,7 +34,7 @@ import { NavParams, NavController } from 'ionic-angular';
           <div class="topup-content">
             <account-list [accounts]="accounts"></account-list>
             <div class="amount-input">
-            £ <input placeholder="Enter amount" [(ngModel)]="amount">
+            £ <input type="number" placeholder="Enter amount" [(ngModel)]="amount">
             </div>
           </div>
           <div class="action-bar">
