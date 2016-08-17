@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Goal } from '../../models/goal';
 import { GoalService } from '../../services/goal.service';
 import { formatAmount } from '../../utils/formatter';
+import { ZooplaPage } from '../zoopla/zoopla';
 
 @Component({
   template: `
@@ -19,11 +20,20 @@ import { formatAmount } from '../../utils/formatter';
         <div [attr.class]="goal?.type + ' header'">
           <h3>{{goal?.name}}</h3>
         </div>
+
+        <div class="card" *ngIf="goal.type === 'home'">
+          <div class="content">Search for homes in your budget range in <strong>zoopla</strong></div>          
+          <div class="action-bar">
+            <button right (click)="searchHomes()">SHOW HOMES</button>
+            <button clear>Ignore</button>
+          </div>
+        </div>  
+
         <div padding>
           <div class="range-item">
             <div class="title">Goal Amount</div>
             <div class="value">£ {{formatAmount(amount)}}</div>
-            <ion-range [(ngModel)]="amount" min="10" max="5000"></ion-range>
+            <ion-range [(ngModel)]="amount" min="10" max="500000"></ion-range>
           </div>
            <div class="range-item">
             <div class="title">In what time</div>
@@ -106,4 +116,7 @@ export class AddGoalPage {
     });
   }
 
+  searchHomes() {
+    this.navController.push(ZooplaPage);
+  }
 }

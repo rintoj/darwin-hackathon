@@ -13,36 +13,31 @@ import { CustomerService } from '../../services/customer.service';
             </button>
         </ion-navbar>
     </ion-header>
-    <ion-content padding class="pot">
+    <ion-content padding class="profile">
         <div class="header-text">
-          {{profile?.PARTYNAME?.FIRSTNAME}} {{profile?.PARTYNAME?.LASTNAME}}
+          {{profile?.PARTYNAME?.FIRSTNM}} {{profile?.PARTYNAME?.LASTNM}}
           <div class="divider"></div>
-          <div class="subheader">{{profile?.GENERAL?.EMAIL?.toLowerCase()}}</div>
+          <div class="subheader">{{profile?.GENERAL?.AGE}} {{profile?.GENERAL?.GENDER}}</div>
+          <div class="subheader">{{address}}</div> 
         </div>
-        <ion-list>
-          <ion-item>
-            <div class="title">Barcelona Trip Account</div>
-            <div class="description">Halifax Savings Account XX2332</div>
-            <div class="amount">£ 310</div>
-          </ion-item>
-           <ion-item>
-            <div class="title">Oyster Card Account</div>
-            <div class="description">Halifax Savings Account XX6572</div>
-            <div class="amount">£ 180</div>
-          </ion-item>
-           <ion-item>
-            <div class="title">Emergency Fund</div>
-            <div class="description">HSBC Current Account XX3454</div>
-            <div class="amount">£ 850</div>
-          </ion-item>
-           <ion-item>
-            <div class="title">Life at 60</div>
-            <div class="description">Group Pensions Plan XX874</div>
-            <div class="amount">£ {{amount}}</div>
-          </ion-item>
-      </ion-list>
-        <button large clear><ion-icon name="add"></ion-icon> Add New Account</button>
-      
+        <div padding>
+          <div class="title">ADDRESS</div>
+          <div class="address" *ngFor="let address of profile?.POSTALADDRESS">
+           <div class="title">{{address.ADDRTYP.toUpperCase()}}</div>
+            <div>{{address.ADDRESS1}}, {{address.ADDRESS2}}</div>
+            <div>{{address.CTYNAME}}, {{address.ZIPCD}}</div>
+            <div></div>
+          </div>
+        </div>
+
+        <div padding class="relation-card">
+          <div class="title">FAMILY DETAILS</div>
+          <div class="address" *ngFor="let address of profile?.FAMILYDETAILS">
+           <div class="title">{{address.RELATIONSHIP.toUpperCase()}}</div>
+            <div>{{address.NAME}}</div>
+            <div>{{address.DESIGNATION}}</div>
+          </div>
+        </div>
     </ion-content>
   `
 })
@@ -55,6 +50,14 @@ export class ProfilePage {
   ngAfterViewInit() {
     this.customerService.profile.subscribe((data: any) => this.profile = data);
     this.customerService.fetch();
+  }
+
+  get address() {
+    if (this.profile === undefined) return '';
+    let address = (this.profile.POSTALADDRESS || [])
+      .find((i: any) => i.ADDRTYP === 'Present');
+
+    return `${address.ADDRESS2} ${address.CTYNAME} ${address.ZIPCD}`;
   }
 
 }

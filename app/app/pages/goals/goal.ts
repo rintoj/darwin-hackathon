@@ -4,7 +4,6 @@ import { AccountList } from '../../components/account-list';
 import { GoalService } from '../../services/goal.service';
 import { formatAmount } from '../../utils/formatter';
 import { NavParams, NavController } from 'ionic-angular';
-import { ZooplaPage } from '../zoopla/zoopla';
 
 @Component({
   directives: [AccountList],
@@ -43,22 +42,24 @@ import { ZooplaPage } from '../zoopla/zoopla';
           </div>
         </div>      
         
-        <div class="card" *ngIf="goal.type === 'home'">
-          <div class="title">Products for you</div>
-          <div class="content">Here are the products for you</div>
-          <div class="action-bar">
-            <button right (click)="topup()">Topup</button>
-            <button clear>Ignore</button>
+        <div class="card products" *ngIf="goal.type === 'home'">
+          <div class="product" *ngFor="let product of products">
+            <div class="title">{{product.name}}</div>
+            <div class="badge" *ngIf="product.guaranteed">Guaranteed</div>
+            <div class="content">{{product.description}}</div>
+            <div class="action-bar">
+              <button>Choose</button>
+            </div>
           </div>
-        </div>  
 
-        <div class="card" *ngIf="goal.type === 'home'">
-          <div class="content">Search for homes in your budget range in <strong>zoopla</strong></div>          
-          <div class="action-bar">
-            <button right (click)="searchHomes()">SHOW HOMES</button>
-            <button clear>Ignore</button>
+          <div class="product compare">
+            <div class="content">People of your age group invest in:</div>
+            <div class="relevance" *ngFor="let product of products" [style.width]="product.relevance + '%'">
+              {{product.name}}
+            </div>
           </div>
-        </div>  
+
+        </div>
     </ion-content>
   `
 })
@@ -71,6 +72,24 @@ export class GoalPage {
       name: 'Savings account',
       accountNumber: 'XXX-XXX-343',
       selected: false
+    }
+  ];
+
+  private products: any[] = [
+    {
+      name: 'PRU CASH ISA',
+      description: '0.5% Interest. You can withdraw your money at any point.',
+      relevance: 40
+    }, {
+      name: 'PRU ISA - STOCKS & SHARES',
+      guaranteed: true,
+      description: '2.0% guaranteed income and rest based on PruFund performance.',
+      relevance: 80,
+      recommended: true
+    }, {
+      name: 'SIPP',
+      description: 'Tax free. Can be withdrawn only after 55 years.',
+      relevance: 30
     }
   ];
 
@@ -95,9 +114,4 @@ export class GoalPage {
       this.goal = goal;
     });
   }
-
-  searchHomes() {
-    this.navController.push(ZooplaPage);
-  }
-
 }

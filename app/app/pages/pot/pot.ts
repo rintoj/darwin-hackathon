@@ -61,11 +61,9 @@ import { BancsService } from '../../services/bancs.service';
 })
 export class PotPage {
 
-  public amount: string = '3,277';
+  public amount: string = '0';
 
-  constructor(private bancsService: BancsService) {
-
-  }
+  constructor(private bancsService: BancsService) { }
 
   ngAfterViewInit() {
     this.bancsService.getFaceAmount().subscribe((data: any) => this.amount = data);
