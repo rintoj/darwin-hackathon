@@ -26,11 +26,17 @@ import { Account } from '../models/account';
         ion-icon.ion-ios-radio-button-on.item-icon {
             color: #00bb9c;
         }
-    `] 
+    `]
 })
 export class AccountList {
     @Input()
     accounts: Account[];
+
+    ngOnChanges() {
+        if (this.accounts !== undefined && this.accounts.length > 0) {
+            this.selectAccount(this.accounts[0]);
+        }
+    }
 
     selectAccount(account) {
         (this.accounts || []).forEach((item: Account) => {

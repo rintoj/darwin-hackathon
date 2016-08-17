@@ -15,10 +15,6 @@ declare let facebook: any;
                         Login
                         <ion-icon name="arrow-forward"></ion-icon>
                     </button>
-                    <button large clear (click)="loginWithFacebook()" style="color: #0062ff">
-                        Login with facebook
-                        <ion-icon name="arrow-forward"></ion-icon>
-                    </button>
                 </ion-slide>
             </ion-slides>
         </ion-content>

@@ -87,13 +87,17 @@ export class GoalService {
     }
 
     public saveGoal(goal: any): Observable<any> {
-        let observable = this.http.post(`${this.baseUrl}/addCustomerGoals`, goal).share();
+        let observable = this.http.post(`${this.baseUrl}/addCustomerGoals`, goal)
+            .map((response: Response) => response.json())
+            .share();
         observable.subscribe(() => this.fetch(this.lastKnownFilter));
         return observable;
     }
 
     public topupGoal(goal: any): Observable<any> {
-        let observable = this.http.post(`${this.baseUrl}/topupGoal`, goal).share();
+        let observable = this.http.post(`${this.baseUrl}/topupGoal`, goal)
+            .map((response: Response) => response.json())
+            .share();
         observable.subscribe(() => this.fetch(this.lastKnownFilter));
         return observable;
     }

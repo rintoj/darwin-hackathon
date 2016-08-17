@@ -25,7 +25,7 @@ import { NavController } from 'ionic-angular';
 })
 export class LoginPage {
 
-    private userId: string = 'john.doe';
+    private userId: string = 'daria.tkowska';
     private password: string = 's3cret';
     private loginError: boolean = false;
 

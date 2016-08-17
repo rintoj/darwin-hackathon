@@ -73,7 +73,9 @@ export class GoalPage {
       id: this.goal.id,
       amount: this.amount,
       custId: '238501400A'
-    }).subscribe((goal: any) => this.goal = goal);
+    }).subscribe((goal: any) => {
+      this.goal = goal;
+    });
   }
 
 }
