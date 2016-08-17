@@ -64,7 +64,9 @@ export class GoalsPage {
   }
 
   loadGoal(goal: Goal) {
-    this.navController.push(GoalPage);
+    this.navController.push(GoalPage, {
+      goal: goal
+    });
   }
 
   addGoal() {
@@ -73,6 +75,6 @@ export class GoalsPage {
 
   changeFilter(filter: string) {
     this.filter = filter;
-    this.goalService.fetch(this.filter); 
+    this.goalService.fetch(this.filter);
   }
 }

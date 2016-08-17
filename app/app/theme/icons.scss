@@ -37,3 +37,19 @@
 .ion-md-i-more {
     -webkit-mask-image: url('../../images/more.svg');
 }
+
+.ion-md-i-halifax-logo {
+    background-image: url('../../images/halifax-logo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 45px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.ion-md-i-hsbc-logo {
+    background-image: url('../../images/hsbc-logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 45px;
+}

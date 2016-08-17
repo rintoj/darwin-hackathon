@@ -91,4 +91,10 @@ export class GoalService {
         observable.subscribe(() => this.fetch(this.lastKnownFilter));
         return observable;
     }
+
+    public topupGoal(goal: any): Observable<any> {
+        let observable = this.http.post(`${this.baseUrl}/topupGoal`, goal).share();
+        observable.subscribe(() => this.fetch(this.lastKnownFilter));
+        return observable;
+    }
 }

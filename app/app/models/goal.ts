@@ -4,6 +4,7 @@ export interface Goal {
     type?: string;
     name?: string;
     targetDate?: string;
+    savedAmount?: number;
     amount?: number;
     priority?: number;
 }

@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { NavParams, NavController } from 'ionic-angular';
 import {Goal} from '../../models/goal';
+import { formatAmount } from '../../utils/formatter';
+import { AccountList } from '../../components/account-list';
+import {GoalService} from '../../services/goal.service';
 
 @Component({
+  directives: [AccountList],
   template: `
     <ion-header>
       <ion-navbar>
@@ -13,19 +17,24 @@ import {Goal} from '../../models/goal';
       </ion-navbar>
     </ion-header>
     <ion-content padding class="goal">
-        <div class="header-text">
+        <div [attr.class]="goal?.type + ' header-text'">
           <ion-icon name="home"></ion-icon>
-          <div class="subheader">Dream Home</div>
-          <div>£ 4,234 </div>
-          <div class="note">Goal Target 2035 | Last payment: 20 days ago</div>
-          <div class="note">£ 120 Monthly Recurring Deposit</div>
+          <div class="subheader">{{goal?.name}}</div>
+          <div class="amount">£ {{formatAmount(goal?.savedAmount)}} <span class="target-amount">of £ {{formatAmount(goal?.amount)}}</span> </div>
+          <div class="note">by {{goal?.targetDate}} | Last payment: 20 days ago</div>          
         </div>
         
         <div class="card">
           <div class="title">Saving for a home?</div>
           <div class="content"> You can contribute £30 more towards this goal to achieve this in your target time.</div>
+          <div class="topup-content">
+            <account-list [accounts]="accounts"></account-list>
+            <div class="amount-input">
+            £ <input placeholder="Enter amount" [(ngModel)]="amount">
+            </div>
+          </div>
           <div class="action-bar">
-            <button clear right>Topup</button>
+            <button clear right (click)="topup()">Topup</button>
           </div>
         </div>      
     </ion-content>
@@ -34,9 +43,37 @@ import {Goal} from '../../models/goal';
 export class GoalPage {
 
   private goal: Goal;
+  private amount: number;
+  private accounts: any[] = [
+    {
+      name: 'Savings account',
+      accountNumber: 'XXX-XXX-343',
+      selected: false
+    }, {
+      name: 'Salary account',
+      accountNumber: 'XXX-XXX-343',
+      selected: false
+    }
+  ];
 
-  constructor(private params: NavParams) {
+  constructor(
+    private navController: NavController,
+    private params: NavParams,
+    private goalService: GoalService
+  ) {
     this.goal = params.get('goal');
+  }
+
+  formatAmount(amount: number): string {
+    return formatAmount(amount);
+  }
+
+  topup() {
+    this.goalService.topupGoal({
+      id: this.goal.id,
+      amount: this.amount,
+      custId: '238501400A'
+    }).subscribe((goal: any) => this.goal = goal);
   }
 
 }

@@ -13,9 +13,14 @@ import { Component } from '@angular/core';
             </ion-navbar>
         </ion-header>
         <ion-content padding class="more">
-            <div class="title">
-            <div class="note">Please come back later</div>
-            </div>
+            <div class="header">Connections</div>
+            <ion-list>
+                <ion-item>
+                    <ion-icon name="leaf" item-left></ion-icon>
+                    Herbology
+                    <ion-icon name="rose" item-right></ion-icon>
+                </ion-item>
+            </ion-list>
         </ion-content>
     `
 })
