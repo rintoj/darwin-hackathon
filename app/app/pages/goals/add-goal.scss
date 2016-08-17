@@ -18,6 +18,66 @@
         bottom: 20px;
         width: 100%;
     }
+    .title {
+        text-transform: uppercase;
+        font-weight: normal;
+        padding: 0px 10px;
+    }
+    .range-bar {
+        height: 10px;
+        border-radius: 10px;
+        background: #f3f4f5;
+    }
+    .range-knob {
+        width: 26px;
+        height: 26px;
+        background: #00bb9c;
+    }
+    .range-item {
+        position: relative;
+    }
+    .value {
+        position: absolute;
+        right: 10px;
+        top: 0px;
+        color: #00bb9c;
+        font-weight: bold;
+    }
+    .list-item {
+        padding: 16px;
+        background: #f3f4f5;
+        margin: 9px;
+        font-size: 1.1em;
+        cursor: pointer;
+        position: relative;
+        & ion-icon {
+            padding-right: 13px;
+        }
+        .checkmark {
+            position: absolute;
+            right: 0px;
+            top: 18px;
+            color: #00bb9c;
+            display: none;
+        }
+        &.done .checkmark {
+            display: block;
+        }
+        .content {
+            max-height: 0px;
+            padding: 0px 32px 0px;
+            overflow: hidden;
+            transition: max-height .3s ease, padding-top .3s ease;
+            & button {
+                margin-top: 15px;
+            }
+        }
+        &[open="true"] .content {
+            padding: 22px 32px 0px;
+            max-height: 100px;
+            display: block;
+        }
+    }
 }
 
 .header {
