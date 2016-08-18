@@ -2,6 +2,7 @@ import { User } from '../../models/user';
 import { TabsPage } from '../tabs/tabs';
 import { Component } from '@angular/core';
 import { LoginService } from '../../services/login.service';
+import { AnalyticsService } from '../../services/analytics.service.ts';
 import { NavController } from 'ionic-angular';
 // import {Toast} from 'ionic-native';
 
@@ -31,7 +32,8 @@ export class LoginPage {
 
     constructor(
         private navCtrl: NavController,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private analyticsService: AnalyticsService
     ) { }
 
     login() {
@@ -41,6 +43,7 @@ export class LoginPage {
                 this.loginError = true;
             } else {
                 // Toast.show('Login successful', 'short', 'bottom').subscribe();
+                this.analyticsService.track('click', 'login:button:click');
                 this.navCtrl.push(TabsPage);
             }
         });

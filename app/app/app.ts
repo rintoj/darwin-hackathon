@@ -9,6 +9,7 @@ import { FacebookService } from './services/facebook.service';
 import { ZooplaService } from './services/zoopla.service';
 import { ChatService } from './services/chat.service';
 import { CustomerService } from './services/customer.service';
+import { AnalyticsService } from './services/analytics.service';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { Platform, ionicBootstrap } from 'ionic-angular';
 
@@ -40,5 +41,6 @@ ionicBootstrap(MyApp,
     FacebookService,
     ZooplaService,
     CustomerService,
-    ChatService
+    ChatService,
+    AnalyticsService
   ]);

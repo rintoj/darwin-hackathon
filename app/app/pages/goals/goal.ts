@@ -43,6 +43,9 @@ import { NavParams, NavController } from 'ionic-angular';
           </div>
         </div>      
 
+        <div padding *ngIf="goal.type === 'home' && nudge != undefined">
+          <nudge [nudge]="nudge" (click)="onClick($event)"></nudge>
+        </div>
         <div class="title" *ngIf="goal.type === 'home'">SAVE USING</div>
         <div class="card products" *ngIf="goal.type === 'home'" [attr.topup]="topupScreen">
           <div class="product" *ngFor="let product of products" [attr.selected]="product.selected">
@@ -63,11 +66,11 @@ import { NavParams, NavController } from 'ionic-angular';
 
                 <ion-item>
                   <ion-label>Validate my identity with my bank</ion-label>
-                  <ion-checkbox [(ngModel)]="pepperoni"></ion-checkbox>
+                  <ion-checkbox [(ngModel)]="validateMyIdentity"></ion-checkbox>
                 </ion-item>
               </div>
               <div class="action-bar">
-                <button right (click)="topup()">Confirm</button>
+                <button right (click)="chooseAndTopup()">Confirm</button>
                 <button clear (click)="removeSelection()">Cancel</button>
               </div>
             </div>      
@@ -94,6 +97,8 @@ export class GoalPage {
   private goal: Goal;
   private amount: number;
   private topupScreen: boolean = false;
+  private nudge: any;
+  private validateMyIdentity: boolean = false;
 
   private accounts: any[] = [
     {
@@ -132,18 +137,43 @@ export class GoalPage {
     this.goal = params.get('goal');
   }
 
+  ngAfterViewInit() {
+    this.goalService.nudges.subscribe((data: any) => {
+      if (data !== undefined) {
+        data.buttons = data.buttons.split('\|');
+        this.nudge = data;
+      }
+    });
+    this.goalService.fetchNudges();
+
+  }
+
   formatAmount(amount: number): string {
     return formatAmount(amount);
   }
 
   topup() {
-    this.goalService.topupGoal({
-      id: this.goal.id,
-      amount: this.amount,
-      custId: '238501400A'
-    }).subscribe((goal: any) => {
-      this.goal = goal;
-    });
+    if (this.amount !== null && (this.amount + '') !== '') {
+      this.goalService.topupGoal({
+        id: this.goal.id,
+        amount: this.amount,
+        custId: '238501400A'
+      }).subscribe((goal: any) => {
+        this.goal = goal;
+        this.removeSelection();
+      });
+    }
+  }
+
+  chooseAndTopup() {
+    if (this.validateMyIdentity === true && this.amount !== null && (this.amount + '') !== '') {
+      this.goalService.chooseProduct({
+        id: this.goal.id,
+        custId: '238501400A'
+      }).subscribe(() => {
+        this.topup();
+      });
+    }
   }
 
   selectProduct(product) {

@@ -20,7 +20,7 @@ import { formatCurrency } from '../../utils/formatter';
             </ion-navbar>
         </ion-header>
         <ion-content padding class="budget">
-            <nudge [nudge]="nudge" *ngIf="nudge != undefined"></nudge>
+            <nudge [nudge]="nudge" *ngIf="nudge != undefined" (click)="onClick($event)"></nudge>
             <div class="card">
                 <div class="half-card">
                     <div class="text">Balance today</div>
@@ -32,7 +32,8 @@ import { formatCurrency } from '../../utils/formatter';
                 </div>
             </div>
             <div class="card">
-                <div class="text">Savings this week</div>
+                <div class="text" *ngIf="savings != undefined && savings.length > 0">Savings this week</div>
+                <div class="text" *ngIf="savings == undefined || savings.length == 0">It seems you have no savings this week</div>
                 <div class="row" *ngFor="let saving of savings">
                     <div class="col col-left">{{saving.savingName}}</div>
                     <div class="col col-right">£ {{saving.weeklySaving}}</div>
@@ -107,5 +108,12 @@ export class BudgetPage {
 
     formatCurrency(amount: number): string {
         return formatCurrency(amount);
+    }
+
+    onClick(button) {
+        if (button && button.srcElement && button.srcElement.innerHTML === 'Ignore') {
+            console.log('here');
+        }
+        this.nudge = undefined;
     }
 }

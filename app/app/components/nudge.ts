@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
 import { Nudge } from '../models/nudge';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
     selector: 'nudge',
@@ -14,7 +14,9 @@ import { Nudge } from '../models/nudge';
                         We found this information in facebook.
                     </div>
                     <div class="action-bar">
-                        <button right *ngFor="let button of nudge?.buttons; let i = index" [clear]="i != 0">{{button}}</button>
+                        <button right *ngFor="let buttonTxt of nudge?.buttons; let i = index" 
+                            [clear]="i != 0" 
+                            (click)="onButtonClick(buttonTxt)">{{buttonTxt}}</button>
                     </div>
                 </div>
             </div>   
@@ -24,4 +26,11 @@ import { Nudge } from '../models/nudge';
 export class NudgeComponent {
     @Input()
     nudge: Nudge[];
+
+    @Output()
+    click: EventEmitter<any> = new EventEmitter<any>();
+
+    onButtonClick(button) {
+        this.click.next(button);
+    }
 }
