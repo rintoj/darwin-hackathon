@@ -8,7 +8,7 @@ declare let facebook: any;
 @Injectable()
 export class FacebookService {
 
-    private baseUrl: string = 'http://192.168.1.100:8080/davm/davmController';
+    private baseUrl: string = 'http://192.168.1.102:8080/davm/davmController';
 
     constructor(private http: Http) { }
 

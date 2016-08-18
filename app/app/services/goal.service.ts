@@ -8,9 +8,10 @@ import { Http, Response } from '@angular/http';
 @Injectable()
 export class GoalService {
 
-    private baseUrl: string = 'http://192.168.1.100:8080/davm/davmController';
+    private baseUrl: string = 'http://192.168.1.102:8080/davm/davmController';
     public goals: BehaviorSubject<Goal[]> = new BehaviorSubject<Goal[]>(undefined);
     public goalTypes: BehaviorSubject<Goal[]> = new BehaviorSubject<Goal[]>(undefined);
+    public nudges: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(undefined);
     public lastKnownFilter: string = 'all';
 
     constructor(private http: Http) {
@@ -100,5 +101,12 @@ export class GoalService {
             .share();
         observable.subscribe(() => this.fetch(this.lastKnownFilter));
         return observable;
+    }
+
+    public fetchNudges(): void {
+        this.http.get(`${this.baseUrl}/getNudges?customerNo=238501400A&screen=home`)
+            .map((response: Response) => response.json())
+            .share()
+            .subscribe((data: any) => this.nudges.next(data));
     }
 }

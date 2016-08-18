@@ -33,6 +33,18 @@
         font-weight: bold;
         padding: 10px 0px;
         color: dimgrey;
+        background: #f8f8f8;
+        margin-left: -17px;
+        padding-left: 17px;
+    }
+    .sub-title {
+        font-weight: normal;
+        border-bottom: 1px solid lightgray;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+        color: #858585;
+        background: transparent;
+        width: 800px;
     }
     .description {
         color: gray;
@@ -50,5 +62,10 @@
     }
     .relation-card {
         border-top: 1px solid #e0e0e0;
+        padding: 16px 0px 0px 16px;
+    }
+    .badge-secondary {
+        color: #818181;
+        background-color: #dedcdc;
     }
 }

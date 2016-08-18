@@ -70,13 +70,32 @@
             padding: 10px 0px;
         }
         .amount-input {
-            padding-left: 90px;
             color: #ff0030;
+            margin-left: 15px;
+            font-size: 1.2em;
+            button {
+                width: 65px;
+                margin-bottom: 20px;
+                margin: 4px;
+                background: #c1c1c1;
+                color: white !important;
+            }
             input {
                 width: calc(100% - 20px);
-                font-size: 1.2em;
-                font-weight: bold;
                 border: 0px;
+                margin: 0 auto;
+                display: inline-block;
+                color: #777676;
+                border-bottom: 1px solid #c1c1c1;
+            }
+            .amount-input-box {
+                width: 94%;
+                color: #c1c1c1 !important;
+            }
+            .or-label {
+                text-align: center;
+                padding: 13px;
+                color: darkgrey;
             }
         }
         button {
@@ -90,16 +109,68 @@
             }
         }
     }
-    .topup-content {
-        padding-top: 16px;
+    .label {
+        padding: 25px 0px 15px;
+        display: block;
+        font-weight: bold;
+    }
+    .item .item-inner {
+        padding-right: 8px;
+        border-bottom: 0px;
+    }
+    account-list {
+        display: block;
+    }
+    ion-list {
+        margin: 0px;
+    }
+    ion-item {
+        margin: 0px !important;
+        border: 0px !important;
+        background: transparent;
+        width: 97%;
+    }
+    .item {
+        background: transparent;
     }
     .target-amount {
         font-size: medium;
         font-weight: normal;
-            padding-bottom: 6px;
+        padding-bottom: 6px;
+    }
+    ion-label {
+        font-weight: normal;
     }
     .title {
         padding: 12px;
+    }
+    .products {
+        .prd-topup-section {
+            display: none;
+        }
+        &[topup="true"] {
+            .product[selected="false"] {
+                display: none;
+            }
+            .choose-btn {
+                display: none;
+            }
+            .prd-topup-section {
+                display: inline-block;
+            }
+            .product.compare {
+                display: none;
+            }
+            .choose-action-bar {
+                display: none;
+            }
+            .action-bar {
+                border: 0px !important;
+                border-top: 1px solid #e4e4e4 !important;
+                margin-top: 13px !important;
+                margin-bottom: 0px !important;
+            }
+        }
     }
 }
 

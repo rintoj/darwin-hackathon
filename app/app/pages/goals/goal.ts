@@ -25,10 +25,10 @@ import { NavParams, NavController } from 'ionic-angular';
           <div class="subheader">{{goal?.name}}</div>
           <div class="amount">£ {{formatAmount(goal?.savedAmount)}}</div>
           <div class="target-amount">Monthly target: £ {{formatAmount(goal?.monthlyAmount)}}</div>
-          <div class="note">by {{goal?.targetDate}} | Last payment: 20 days ago</div>          
+          <div class="note">£ {{formatAmount(goal?.amount)}} by {{goal?.targetDate}}</div>          
         </div>
 
-         <div class="card" *ngIf="goal?.type !== 'home'">
+        <div class="card" *ngIf="goal?.type !== 'home'">
           <div class="title">Saving for a home?</div>
           <div class="content"> You can contribute £30 more towards this goal to achieve this in your target time.</div>
           <div class="topup-content">
@@ -39,17 +39,41 @@ import { NavParams, NavController } from 'ionic-angular';
           </div>
           <div class="action-bar">
             <button right (click)="topup()">Topup</button>
-            <button clear>Ignore</button>
+            <button clear (click)="ignore()">Ignore</button>
           </div>
         </div>      
-        <div class="title" *ngIf="goal.type === 'home'">FUND USING</div>
-        <div class="card products" *ngIf="goal.type === 'home'">
-          <div class="product" *ngFor="let product of products">
+
+        <div class="title" *ngIf="goal.type === 'home'">SAVE USING</div>
+        <div class="card products" *ngIf="goal.type === 'home'" [attr.topup]="topupScreen">
+          <div class="product" *ngFor="let product of products" [attr.selected]="product.selected">
             <div class="title">{{product.name}}</div>
             <div class="badge" *ngIf="product.guaranteed">Guaranteed</div>
             <div class="content">{{product.description}}</div>
-            <div class="action-bar">
-              <button>Choose</button>
+
+            <div class="prd-topup-section">
+              <div class="topup-content">
+                <div class="label">START WITH</div>
+                <div class="amount-input">
+                  <div class="amount-input-box">
+                    £ <input type="number" placeholder="Enter amount" [(ngModel)]="amount">
+                  </div>
+                </div>
+                <div class="label">USING</div>
+                <account-list [accounts]="accounts"></account-list>
+
+                <ion-item>
+                  <ion-label>Validate my identity with my bank</ion-label>
+                  <ion-checkbox [(ngModel)]="pepperoni"></ion-checkbox>
+                </ion-item>
+              </div>
+              <div class="action-bar">
+                <button right (click)="topup()">Confirm</button>
+                <button clear (click)="removeSelection()">Cancel</button>
+              </div>
+            </div>      
+
+            <div class="action-bar choose-action-bar">
+              <button class="choose-btn" (click)="selectProduct(product)">Choose</button>
             </div>
           </div>
 
@@ -58,6 +82,7 @@ import { NavParams, NavController } from 'ionic-angular';
             <div class="relevance" *ngFor="let product of products" [style.width]="product.relevance + '%'">
               {{product.name}}
             </div>
+            <div class="content">70% people like you choose PRU ISA</div>
           </div>
 
         </div>
@@ -68,6 +93,8 @@ export class GoalPage {
 
   private goal: Goal;
   private amount: number;
+  private topupScreen: boolean = false;
+
   private accounts: any[] = [
     {
       name: 'Savings account',
@@ -80,17 +107,20 @@ export class GoalPage {
     {
       name: 'PRU CASH ISA',
       description: '0.5% Interest. You can withdraw your money at any point.',
-      relevance: 40
+      relevance: 40,
+      selected: true
     }, {
       name: 'PRU ISA - STOCKS & SHARES',
       guaranteed: true,
       description: '2.0% guaranteed income and rest based on PruFund performance.',
       relevance: 80,
-      recommended: true
+      recommended: true,
+      selected: true
     }, {
       name: 'SIPP',
-      description: 'Tax free. Can be withdrawn only after 55 years.',
-      relevance: 30
+      description: 'Tax free, upto 1.4% return. withdrawal after age of 55',
+      relevance: 30,
+      selected: true
     }
   ];
 
@@ -114,5 +144,19 @@ export class GoalPage {
     }).subscribe((goal: any) => {
       this.goal = goal;
     });
+  }
+
+  selectProduct(product) {
+    (this.products || []).forEach((p: any) => p.selected = (p === product));
+    this.topupScreen = true;
+  }
+
+  removeSelection() {
+    (this.products || []).forEach((p: any) => p.selected = false);
+    this.topupScreen = false;
+  }
+
+  ignore() {
+    this.navController.pop();
   }
 }

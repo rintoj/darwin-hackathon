@@ -9,8 +9,7 @@ import { Account } from '../models/account';
             <ion-icon name="i-metro-logo" item-left></ion-icon>
             <div class="acc-name">{{account.name}}</div>
             <div class="acc-number">{{account.accountNumber}}</div>
-            <ion-icon *ngIf="account.selected == false" name="ios-radio-button-off" item-right></ion-icon>
-            <ion-icon *ngIf="account.selected == true" name="ios-radio-button-on" item-right></ion-icon>
+            <ion-icon name="ios-arrow-down" item-right></ion-icon>
         </ion-item>
     </ion-list>
     `,

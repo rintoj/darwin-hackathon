@@ -7,7 +7,7 @@ import { Http, Response } from '@angular/http';
 @Injectable()
 export class LoginService {
 
-    private url: string = 'http://192.168.1.106:8080/davm/davmController/userLogin';
+    private url: string = 'http://192.168.1.102:8080/davm/davmController/userLogin';
 
     constructor(private http: Http) { }
 

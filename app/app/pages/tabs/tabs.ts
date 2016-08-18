@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {ProfilePage} from '../profile/profile';
+import {ChatPage} from '../chat/chat';
 import {ContactPage} from '../contact/contact';
 import {BudgetPage} from '../budget/budget';
 import {GoalsPage} from '../goals/goals';
@@ -26,7 +27,7 @@ import {MenuController, NavController} from 'ionic-angular';
       <ion-tab swipeBackEnabled [root]="goalsPage" tabTitle="Goals" tabIcon="i-goals"></ion-tab>
       <ion-tab swipeBackEnabled [root]="potPage" tabTitle="Pot" tabIcon="i-piggybank"></ion-tab>      
       <ion-tab swipeBackEnabled [root]="profilePage" tabTitle="Profile" tabIcon="i-profile"></ion-tab>      
-      <ion-tab swipeBackEnabled [root]="morePage" tabTitle="More" tabIcon="i-more"></ion-tab>      
+      <ion-tab swipeBackEnabled [root]="chatPage" tabTitle="Help" tabIcon="i-more"></ion-tab>      
     </ion-tabs>
   `
 })
@@ -39,7 +40,7 @@ export class TabsPage {
   private goalsPage: any;
   private potPage: any;
   private loginPage: any;
-  private morePage: any;
+  private chatPage: any;
 
   constructor(
     private menuCtrl: MenuController,
@@ -50,7 +51,7 @@ export class TabsPage {
     this.budgetPage = BudgetPage;
     this.goalsPage = GoalsPage;
     this.potPage = PotPage;
-    this.morePage = MorePage;
+    this.chatPage = ChatPage;
   }
 
   toggleMenu() {

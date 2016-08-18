@@ -2,6 +2,7 @@ import { Nudge } from '../../models/nudge';
 import { Component } from '@angular/core';
 import { NudgeComponent } from '../../components/nudge';
 import { PieChart } from '../../components/pie-chart';
+import { GoalService } from '../../services/goal.service';
 
 @Component({
     directives: [NudgeComponent, PieChart],
@@ -17,7 +18,7 @@ import { PieChart } from '../../components/pie-chart';
             </ion-navbar>
         </ion-header>
         <ion-content padding class="budget">
-            <nudge *ngFor="let nudge of nudges" [nudge]="nudge"></nudge>
+            <nudge [nudge]="nudge" *ngIf="nudge != undefined"></nudge>
             <div class="card">
                 <div class="half-card">
                     <div class="text">Balance today</div>
@@ -45,13 +46,17 @@ import { PieChart } from '../../components/pie-chart';
 })
 export class BudgetPage {
 
-    protected nudges: Nudge[] = [
-        {
-            text: `Hello Daria. Congratulations on your new job.  40% of users replan their investments after a pay raise. We recommed too.`,
-            note: `We got this information from Facebook`,
-            buttons: ['Replan', 'Ignore'],
-            icon: 'ios-information-circle-outline',
-            noteIcon: 'logo-facebook'
-        }
-    ];
+    protected nudge: Nudge;
+
+    constructor(private goalService: GoalService) { }
+
+    ngAfterViewInit() {
+        this.goalService.nudges.subscribe((data: any) => {
+            if (data !== undefined) {
+                data.buttons = data.buttons.split('\|');
+                this.nudge = data;
+            }
+        });
+        this.goalService.fetchNudges();
+    }
 }
