@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { GoalService } from '../../services/goal.service';
 import { BancsService } from '../../services/bancs.service';
+import { formatCurrency } from '../../utils/formatter';
 
 @Component({
   template: `
@@ -15,7 +17,7 @@ import { BancsService } from '../../services/bancs.service';
     </ion-header>
     <ion-content padding class="pot">
         <div class="header-text">
-          £ 4,617
+          £ {{formatCurrency(sumAmount)}}
           <div class="divider"></div>
           <div class="subheader">as of 14th Aug 2016</div>
         </div>
@@ -33,25 +35,15 @@ import { BancsService } from '../../services/bancs.service';
           </ion-segment>
         </div>
         <ion-list>
-          <ion-item>
-            <div class="title">Barcelona Trip Account</div>
-            <div class="description">Pru Cash ISA Account XX2332</div>
-            <div class="amount">£ 310</div>
-          </ion-item>
-           <ion-item>
-            <div class="title">Oyster Card Account</div>
-            <div class="description">Pru Cash ISA Account XX6572</div>
-            <div class="amount">£ 180</div>
+          <ion-item *ngFor="let pot of pots">
+            <div class="title">{{pot.accountName}}</div>
+            <div class="description">{{pot.pruAccount}}</div>
+            <div class="amount">£ {{formatCurrency(pot.accountBalance)}}</div>
           </ion-item>
           <ion-item>
-            <div class="title">Emergency Fund</div>
-            <div class="description">Pru Cash ISA Account XX3454</div>
-            <div class="amount">£ 850</div>
-          </ion-item>
-           <ion-item>
             <div class="title">Life at 60</div>
             <div class="description">Group Pensions Plan XX874</div>
-            <div class="amount">£ {{amount}}</div>
+            <div class="amount">£ {{formatCurrency(amount)}}</div>
           </ion-item>
       </ion-list>
         <button large clear><ion-icon name="add"></ion-icon> Add New Account</button>
@@ -61,11 +53,34 @@ import { BancsService } from '../../services/bancs.service';
 })
 export class PotPage {
 
-  public amount: string = '0';
+  public sumAmount: number = 0;
+  public amount: number = 0;
+  public pots: any[];
 
-  constructor(private bancsService: BancsService) { }
+  constructor(private bancsService: BancsService, private goalService: GoalService) { }
 
   ngAfterViewInit() {
-    this.bancsService.getFaceAmount().subscribe((data: any) => this.amount = data);
+    this.goalService.pots.subscribe((data: any) => {
+      this.pots = data;
+      this.calculateSum();
+    });
+    this.goalService.fetchPots();
+    this.bancsService.getFaceAmount().subscribe((data: any) => {
+      this.amount = parseInt(data + '');
+      this.calculateSum();
+    });
+  }
+
+  calculateSum() {
+    this.sumAmount = this.amount || 0;
+    if (this.pots !== undefined) {
+      this.pots.forEach((p: any) => {
+        this.sumAmount += p.accountBalance;
+      });
+    }
+  }
+
+  formatCurrency(amount: number): string {
+    return formatCurrency(amount);
   }
 }

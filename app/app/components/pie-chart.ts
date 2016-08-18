@@ -20,9 +20,13 @@ export class PieChart {
             radius = Math.min(width, height) / 2;
 
         var color = d3.scale.ordinal()
-            .range(['#FF6384',
-                    '#36A2EB',
-                    '#FFCE56']);
+            .range([
+                '#FF6384',
+                '#36A2EB',
+                '#FFCE56',
+                '#36e5eb',
+                '#bbdc2c'
+            ]);
 
         var arc: any = d3.svg.arc()
             .outerRadius(radius - 10)
@@ -34,7 +38,7 @@ export class PieChart {
 
         var pie = d3.layout.pie()
             .sort(null)
-            .value(function (d: any) { return d.population; });
+            .value(function (d: any) { return d.value; });
 
         var svg = d3.select(this.elementRef.nativeElement).append('svg')
             .attr('width', width)
@@ -50,27 +54,27 @@ export class PieChart {
 
         g.append('path')
             .attr('d', arc)
-            .style('fill', function (d: any): any { return color(d.data.age); });
+            .style('fill', function (d: any): any { return color(d.data.text); });
 
         g.append('text')
             .attr('transform', function (d: any) { return 'translate(' + labelArc.centroid(d) + ')'; })
             .attr('dy', '.35em')
-            .text(function (d: any) { return d.data.age; });
+            .text(function (d: any) { return d.data.text; });
 
 
         function type(d) {
-            d.population = +d.population;
+            d.value = +d.value;
             return d;
         }
     }
 
     get data(): any {
         return [
-            { age: 'Savings', population: 2704659 },
-            { age: 'Housing', population: 4499890 },
-            { age: 'Lifestyle', population: 2159981 },
-            { age: 'Transportation', population: 3853788 },
-            { age: 'Others', population: 14106543 }
+            { text: 'Savings', value: 2704659 },
+            { text: 'Housing', value: 4499890 },
+            { text: 'Lifestyle', value: 2159981 },
+            { text: 'Transportation', value: 3853788 },
+            { text: 'Others', value: 14106543 }
         ];
     }
 }

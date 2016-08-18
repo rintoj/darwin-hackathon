@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { NudgeComponent } from '../../components/nudge';
 import { PieChart } from '../../components/pie-chart';
 import { GoalService } from '../../services/goal.service';
+import { BancsService } from '../../services/bancs.service';
+import { formatCurrency } from '../../utils/formatter';
 
 @Component({
     directives: [NudgeComponent, PieChart],
@@ -22,19 +24,18 @@ import { GoalService } from '../../services/goal.service';
             <div class="card">
                 <div class="half-card">
                     <div class="text">Balance today</div>
-                    <div class="amount">£ 3,450<span class="decimal">.00</span></div>
+                    <div class="amount">£ {{formatCurrency(sumAmount)}}<span class="decimal">.00</span></div>
                 </div>
                 <div class="half-card">
                     <div class="text">Saved so far</div>
-                    <div class="amount">£ 256<span class="decimal">.23</span></div>
+                    <div class="amount">£ {{formatCurrency(sumAmountSavings)}}<span class="decimal">.23</span></div>
                 </div>
             </div>
             <div class="card">
                 <div class="text">Savings this week</div>
-                <div class="row">
-                    <div class="col col-left">Oyster savings</div><div class="col col-right">£2.30</div>
-                    <div class="col col-left">Tesco Meal deal</div><div class="col col-right">£0.38</div>
-                    <div class="col col-left">Orion Stand up comedy</div><div class="col col-right">£5.40</div>
+                <div class="row" *ngFor="let saving of savings">
+                    <div class="col col-left">{{saving.savingName}}</div>
+                    <div class="col col-right">£ {{saving.weeklySaving}}</div>
                 </div>
             </div>
             <div class="card">
@@ -48,7 +49,15 @@ export class BudgetPage {
 
     protected nudge: Nudge;
 
-    constructor(private goalService: GoalService) { }
+    protected pots: any;
+    protected amount: any;
+    protected sumAmount: number = 0;
+
+    protected savings: any;
+    protected amountSavings: any;
+    protected sumAmountSavings: number = 0;
+
+    constructor(private bancsService: BancsService, private goalService: GoalService) { }
 
     ngAfterViewInit() {
         this.goalService.nudges.subscribe((data: any) => {
@@ -58,5 +67,45 @@ export class BudgetPage {
             }
         });
         this.goalService.fetchNudges();
+
+        this.goalService.pots.subscribe((data: any) => {
+            this.pots = data;
+            this.calculateSum();
+        });
+        this.goalService.fetchPots();
+
+        this.bancsService.getFaceAmount().subscribe((data: any) => {
+            this.amount = parseInt(data + '');
+            this.calculateSum();
+        });
+        this.goalService.fetchPots();
+
+        this.goalService.savings.subscribe((data: any) => {
+            this.savings = data;
+            this.calculateSavingsAmount();
+        });
+        this.goalService.fetchSavings();
+    }
+
+    calculateSum() {
+        this.sumAmount = this.amount || 0;
+        if (this.pots !== undefined) {
+            this.pots.forEach((p: any) => {
+                this.sumAmount += p.accountBalance;
+            });
+        }
+    }
+
+    calculateSavingsAmount() {
+        this.sumAmountSavings = 0;
+        if (this.savings !== undefined) {
+            this.savings.forEach((s: any) => {
+                this.sumAmountSavings += s.monthlySaving;
+            });
+        }
+    }
+
+    formatCurrency(amount: number): string {
+        return formatCurrency(amount);
     }
 }

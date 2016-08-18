@@ -12,6 +12,8 @@ export class GoalService {
     public goals: BehaviorSubject<Goal[]> = new BehaviorSubject<Goal[]>(undefined);
     public goalTypes: BehaviorSubject<Goal[]> = new BehaviorSubject<Goal[]>(undefined);
     public nudges: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(undefined);
+    public pots: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(undefined);
+    public savings: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(undefined);
     public lastKnownFilter: string = 'all';
 
     constructor(private http: Http) {
@@ -108,5 +110,19 @@ export class GoalService {
             .map((response: Response) => response.json())
             .share()
             .subscribe((data: any) => this.nudges.next(data));
+    }
+
+    public fetchPots(): void {
+        this.http.get(`${this.baseUrl}/getPots?customerNo=238501400A`)
+            .map((response: Response) => response.json())
+            .share()
+            .subscribe((data: any) => this.pots.next(data));
+    }
+
+    public fetchSavings(): void {
+        this.http.get(`${this.baseUrl}/getSavings?customerNo=238501400A`)
+            .map((response: Response) => response.json())
+            .share()
+            .subscribe((data: any) => this.savings.next(data));
     }
 }
