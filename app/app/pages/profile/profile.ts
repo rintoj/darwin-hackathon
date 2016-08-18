@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
 import { CustomerService } from '../../services/customer.service';
 import { FacebookService } from '../../services/facebook.service';
+import { AccountListPage } from './account-list';
 
 @Component({
   template: `
@@ -49,7 +51,7 @@ import { FacebookService } from '../../services/facebook.service';
             <ion-list-header>
                 Finance
             </ion-list-header>
-            <ion-item>
+            <ion-item (click)="gotoAccountList()">
                 Bank Accounts <ion-badge item-right secondary>1 connected</ion-badge>
                 <ion-icon name="ios-arrow-forward" item-right></ion-icon>
             </ion-item>
@@ -94,6 +96,7 @@ export class ProfilePage {
   public profile: any;
 
   constructor(
+    private navController: NavController,
     private customerService: CustomerService,
     private facebookService: FacebookService
   ) { }
@@ -123,6 +126,10 @@ export class ProfilePage {
       .find((i: any) => i.ADDRTYP === 'Present');
 
     return `${address.ADDRESS2} ${address.CTYNAME} ${address.ZIPCD}`;
+  }
+
+  gotoAccountList() {
+    this.navController.push(AccountListPage);
   }
 
 }

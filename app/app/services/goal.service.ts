@@ -113,8 +113,9 @@ export class GoalService {
         return observable;
     }
 
-    public fetchNudges(): void {
-        this.http.get(`${this.baseUrl}/getNudges?customerNo=238501400A&screen=home`)
+    public fetchNudges(screen: string): void {
+        screen = screen || 'homePage';
+        this.http.get(`${this.baseUrl}/getNudges?customerNo=238501400A&screen=${screen}`)
             .map((response: Response) => response.json())
             .share()
             .subscribe((data: any) => this.nudges.next(data));

@@ -3,10 +3,11 @@ import { Component } from '@angular/core';
 import { AccountList } from '../../components/account-list';
 import { GoalService } from '../../services/goal.service';
 import { formatAmount } from '../../utils/formatter';
+import { NudgeComponent } from '../../components/nudge';
 import { NavParams, NavController } from 'ionic-angular';
 
 @Component({
-  directives: [AccountList],
+  directives: [AccountList, NudgeComponent],
   template: `
     <ion-header>
       <ion-navbar>
@@ -43,11 +44,11 @@ import { NavParams, NavController } from 'ionic-angular';
           </div>
         </div>      
 
-        <div padding *ngIf="goal.type === 'home' && nudge != undefined">
-          <nudge [nudge]="nudge" (click)="onClick($event)"></nudge>
+        <div *ngIf="goal.type === 'home' && nudge != undefined && goal.accountSelected == 'Y'">
+          <nudge [nudge]="nudge"></nudge>
         </div>
-        <div class="title" *ngIf="goal.type === 'home'">SAVE USING</div>
-        <div class="card products" *ngIf="goal.type === 'home'" [attr.topup]="topupScreen">
+        <div class="title" *ngIf="goal.type === 'home' && goal.accountSelected != 'Y'">SAVE USING</div>
+        <div class="card products" *ngIf="goal.type === 'home' && goal.accountSelected != 'Y'" [attr.topup]="topupScreen">
           <div class="product" *ngFor="let product of products" [attr.selected]="product.selected">
             <div class="title">{{product.name}}</div>
             <div class="badge" *ngIf="product.guaranteed">Guaranteed</div>
@@ -140,11 +141,13 @@ export class GoalPage {
   ngAfterViewInit() {
     this.goalService.nudges.subscribe((data: any) => {
       if (data !== undefined) {
-        data.buttons = data.buttons.split('\|');
+        if (!(data.buttons instanceof Array)) {
+          data.buttons = data.buttons.split('\|');
+        }
         this.nudge = data;
       }
     });
-    this.goalService.fetchNudges();
+    this.goalService.fetchNudges('home');
 
   }
 

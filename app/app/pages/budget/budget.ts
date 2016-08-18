@@ -63,11 +63,13 @@ export class BudgetPage {
     ngAfterViewInit() {
         this.goalService.nudges.subscribe((data: any) => {
             if (data !== undefined) {
-                data.buttons = data.buttons.split('\|');
+                if (!(data.buttons instanceof Array)) {
+                    data.buttons = data.buttons.split('\|');
+                }
                 this.nudge = data;
             }
         });
-        this.goalService.fetchNudges();
+        this.goalService.fetchNudges('homePage');
 
         this.goalService.pots.subscribe((data: any) => {
             this.pots = data;

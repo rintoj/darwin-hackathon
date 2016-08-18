@@ -40,7 +40,7 @@ import { NewGoalPage } from './new-goal';
             <ion-icon name="ios-arrow-forward"></ion-icon>
           </div>         
         </div>
-        <button large clear (click)="addGoal()"><ion-icon name="add"></ion-icon> Add New Goal</button>
+        <button clear (click)="addGoal()"><ion-icon name="add"></ion-icon> Add New Goal</button>
     </ion-content>
   `
 })

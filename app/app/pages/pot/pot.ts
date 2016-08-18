@@ -46,8 +46,7 @@ import { formatCurrency } from '../../utils/formatter';
             <div class="amount">£ {{formatCurrency(amount)}}</div>
           </ion-item>
       </ion-list>
-        <button large clear><ion-icon name="add"></ion-icon> Add New Account</button>
-      
+      <button clear><ion-icon name="add"></ion-icon> Add New Account</button>
     </ion-content>
   `
 })
