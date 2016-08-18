@@ -12,11 +12,11 @@ export class ChatService {
     public chats: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(undefined);
     private chatArray: any[] = [
         {
-            text: 'Hi Daria, I have £10,000, where shall I invest?',
+            text: 'Hello PAL, I have £10,000, where shall I invest?',
             me: true,
             time: '1 mins ago'
         }, {
-            text: 'Great, We can recommend an advisor to you.',
+            text: 'Great Daria, We can recommend an advisor to you.',
             me: false,
             time: 'now'
         }

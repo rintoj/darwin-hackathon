@@ -24,11 +24,11 @@ import { NavParams, NavController } from 'ionic-angular';
           <ion-icon name="home"></ion-icon>
           <div class="subheader">{{goal?.name}}</div>
           <div class="amount">£ {{formatAmount(goal?.savedAmount)}}</div>
-          <div class="target-amount">Monthly target: £ {{formatAmount(goal?.amount)}}</div>
+          <div class="target-amount">Monthly target: £ {{formatAmount(goal?.monthlyAmount)}}</div>
           <div class="note">by {{goal?.targetDate}} | Last payment: 20 days ago</div>          
         </div>
 
-         <div class="card">
+         <div class="card" *ngIf="goal?.type !== 'home'">
           <div class="title">Saving for a home?</div>
           <div class="content"> You can contribute £30 more towards this goal to achieve this in your target time.</div>
           <div class="topup-content">
@@ -42,7 +42,7 @@ import { NavParams, NavController } from 'ionic-angular';
             <button clear>Ignore</button>
           </div>
         </div>      
-        <div class="title" *ngIf="goal.type === 'home'">RELATED PRODUCTS</div>
+        <div class="title" *ngIf="goal.type === 'home'">FUND USING</div>
         <div class="card products" *ngIf="goal.type === 'home'">
           <div class="product" *ngFor="let product of products">
             <div class="title">{{product.name}}</div>

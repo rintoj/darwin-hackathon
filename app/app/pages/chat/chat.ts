@@ -17,7 +17,6 @@ import { ChatService } from '../../services/chat.service';
         <ion-content padding class="chat">
             <div class="chats">
                 <div class="bubble" *ngFor="let chat of chats" [attr.me]="chat.me">
-                    <span class="me">You:</span>  
                     <span [innerHTML]="chat.text"></span>
                     <div class="time">{{chat.time}}</div>
                 </div>
