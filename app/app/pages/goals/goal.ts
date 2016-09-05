@@ -66,7 +66,7 @@ import { NavParams, NavController } from 'ionic-angular';
                 <account-list [accounts]="accounts"></account-list>
 
                 <ion-item>
-                  <ion-label>Validate my identity with my bank</ion-label>
+                  <ion-label>Validate my identity with bank</ion-label>
                   <ion-checkbox [(ngModel)]="validateMyIdentity"></ion-checkbox>
                 </ion-item>
               </div>

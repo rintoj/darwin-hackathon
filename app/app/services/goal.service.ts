@@ -11,7 +11,7 @@ export class GoalService {
     private baseUrl: string = 'http://192.168.1.102:8080/davm/davmController';
     public goals: BehaviorSubject<Goal[]> = new BehaviorSubject<Goal[]>(undefined);
     public goalTypes: BehaviorSubject<Goal[]> = new BehaviorSubject<Goal[]>(undefined);
-    public nudges: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(undefined);
+    public nudges: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
     public pots: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(undefined);
     public savings: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(undefined);
     public lastKnownFilter: string = 'all';
@@ -72,6 +72,11 @@ export class GoalService {
                 name: 'Life after 60'
             }
         ]);
+
+        this.nudges.next({
+            text: 'Congratulations on your new job. May its a good time for you to think about new savings',
+            buttons: ['Go', 'Ignore']
+        });
     }
 
     public fetch(filter: string): void {

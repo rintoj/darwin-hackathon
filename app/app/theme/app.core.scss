@@ -4,7 +4,6 @@
 // These are the imports which make up the design of this app.
 // By default each design mode includes these shared imports.
 // App Shared Sass variables belong in app.variables.scss.
-@import "./icons.scss";
 @import "../pages/profile/profile";
 @import "../pages/contact/contact";
 @import "../pages/zoopla/zoopla";
@@ -62,9 +61,19 @@ ion-page {
 
 .logo {
     display: block;
-    height: 37px;
-    margin: 0px 11px;
+    height: 43px;
+    margin: 3px auto;
     -webkit-transform: translateX(-17px);
     transform: translateX(-17px);
-    padding-top: 6px;
+    padding: 8px;
+}
+
+.metro-logo {
+    background: url('../../images/metro-logo.jpg');
+    background: url("../../images/metro-logo.jpg");
+    display: inline-block;
+    width: 70px;
+    height: 28px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }

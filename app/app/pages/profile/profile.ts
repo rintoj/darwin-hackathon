@@ -93,7 +93,38 @@ import { AccountListPage } from './account-list';
 })
 export class ProfilePage {
 
-  public profile: any;
+  public profile: any = {
+    PARTYNAME: {
+      FIRSTNM: 'Daria',
+      LASTNM: 'Tkowska'
+    },
+    GENERAL: {
+      AGE: 25,
+      GENDER: 'Female'
+    },
+    POSTALADDRESS: [
+      {
+        ADDRTYP: 'Office',
+        ADDRESS1: 'LSE',
+        ADDRESS2: 'Houghton Street',
+        CTYNAME: 'London',
+        ZIPCD: 'WC2A 2AE'
+      }, {
+        ADDRTYP: 'Present',
+        ADDRESS1: '27',
+        ADDRESS2: 'Old Gloucester Street',
+        CTYNAME: 'London',
+        ZIPCD: 'WCN1 2BF'
+      }
+    ],
+    FAMILYDETAILS: [
+      {
+        RELATIONSHIP: 'Mother',
+        NAME: 'Adelajda',
+        DESIGNATION: 'Designer'
+      }
+    ]
+  };
 
   constructor(
     private navController: NavController,
@@ -102,7 +133,7 @@ export class ProfilePage {
   ) { }
 
   ngAfterViewInit() {
-    this.customerService.profile.subscribe((data: any) => this.profile = data);
+    // this.customerService.profile.subscribe((data: any) => this.profile = data);
     this.customerService.fetch();
 
     setTimeout(() => {

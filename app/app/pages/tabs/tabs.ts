@@ -23,11 +23,11 @@ import {MenuController, NavController} from 'ionic-angular';
     </ion-menu>
 
     <ion-tabs #mainContent>
-      <ion-tab swipeBackEnabled [root]="budgetPage" tabTitle="Home" tabIcon="i-home"></ion-tab>      
-      <ion-tab swipeBackEnabled [root]="goalsPage" tabTitle="Goals" tabIcon="i-goals"></ion-tab>
-      <ion-tab swipeBackEnabled [root]="potPage" tabTitle="Pot" tabIcon="i-piggybank"></ion-tab>      
-      <ion-tab swipeBackEnabled [root]="profilePage" tabTitle="Profile" tabIcon="i-profile"></ion-tab>      
-      <ion-tab swipeBackEnabled [root]="chatPage" tabTitle="Help" tabIcon="i-more"></ion-tab>      
+      <ion-tab swipeBackEnabled [root]="budgetPage" tabTitle="Home" tabIcon="home"></ion-tab>      
+      <ion-tab swipeBackEnabled [root]="goalsPage" tabTitle="Goals" tabIcon="flag"></ion-tab>
+      <ion-tab swipeBackEnabled [root]="potPage" tabTitle="Pot" tabIcon="cube"></ion-tab>      
+      <ion-tab swipeBackEnabled [root]="profilePage" tabTitle="Profile" tabIcon="person"></ion-tab>      
+      <ion-tab swipeBackEnabled [root]="chatPage" tabTitle="Help" tabIcon="chatbubbles"></ion-tab>      
     </ion-tabs>
   `
 })

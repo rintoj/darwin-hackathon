@@ -6,7 +6,7 @@ import { Account } from '../models/account';
     template: `
      <ion-list>
         <ion-item *ngFor="let account of accounts" (click)="selectAccount(account)">
-            <ion-icon name="i-metro-logo" item-left></ion-icon>
+            <ion-icon class="metro-logo" item-left></ion-icon>
             <div class="acc-name">{{account.name}}</div>
             <div class="acc-number">{{account.accountNumber}}</div>
             <ion-icon name="ios-arrow-down" item-right></ion-icon>

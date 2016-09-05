@@ -26,7 +26,7 @@ export class FacebookService {
     }
 
     isConnectedToFacebook() {
-        return window.localStorage.getItem('fbAccessToken') !== undefined;
+        return window.localStorage.getItem('fbAccessToken') !== null;
     }
 
     fetchFacebookFeed(callback?: Function) {

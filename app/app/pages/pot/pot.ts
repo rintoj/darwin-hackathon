@@ -52,8 +52,8 @@ import { formatCurrency } from '../../utils/formatter';
 })
 export class PotPage {
 
-  public sumAmount: number = 0;
-  public amount: number = 0;
+  public sumAmount: number = 2305;
+  public amount: number = 2305;
   public pots: any[];
 
   constructor(private bancsService: BancsService, private goalService: GoalService) { }

@@ -18,7 +18,7 @@ import { Component } from '@angular/core';
                 Bank Accounts
             </ion-list-header>
             <ion-item>
-              <ion-icon name="i-metro-logo" item-left></ion-icon>
+              <ion-icon class="metro-logo" item-left></ion-icon>
               <div class="acc-name">Savings account</div>
               <div class="acc-number">XXX-XXX-343</div>
             </ion-item>
